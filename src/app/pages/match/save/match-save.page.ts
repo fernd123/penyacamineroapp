@@ -49,7 +49,7 @@ export class MatchSavePage implements OnInit {
       endHour: [match != undefined ? match.endHour : '', Validators.required],
       date: [match != undefined ? match.date : '', Validators.required],
       place: [match != undefined ? match.place : '', null],
-      type: [match != undefined ? match.type : '', Validators.required],
+      type: [match != undefined ? match.type : 'match.typeF.5', Validators.required],
       localGoals: [match != undefined ? match.localGoals : '', null],
       awayGoals: [match != undefined ? match.awayGoals : '', null],
       lineUpLocal: [match != undefined ? match.lineUpLocal : ''],
@@ -103,9 +103,9 @@ export class MatchSavePage implements OnInit {
   }
 
   getSignInButtonText() {
-    if (this.isUserSignedInConvocation()) {
+    if (this.currentMatch != undefined && this.isUserSignedInConvocation()) {
       return 'match.signInYet';
-    } else if (this.currentMatch.statistics.length == 10) {
+    } else if (this.currentMatch != undefined && this.currentMatch.statistics.length == 10) {
       return 'match.convocationClosed';
     } else if (this.currentMatch == undefined || this.currentMatch.statistics.length <= 9) {
       return 'match.signIn';
@@ -183,9 +183,7 @@ export class MatchSavePage implements OnInit {
   }
 
   showStatistics(statistic: any, index: number) {
-    debugger;
     if (this.currentMatch.statistics != undefined && this.checkIfPlayerIsCurrentPlayer(statistic.playerId)) {
-      debugger;
       this.currentPlayer = statistic.playerId;
       this.showPlayerStatistic = !this.showPlayerStatistic;
       this.currentStatisticIndex = index;
@@ -193,7 +191,6 @@ export class MatchSavePage implements OnInit {
       this.statisticForm.get('assists').setValue(this.currentMatch.statistics[index].assists);
       /*
             this.currentMatch.statistics.forEach(s => {
-              debugger;
               if (s.playerId == statistic.playerId) {
                 this.currentStatisticIndex = index;
                 this.statisticForm.get('goals').setValue(s.goals);
@@ -206,7 +203,6 @@ export class MatchSavePage implements OnInit {
   }
 
   async saveStatistics() {
-    debugger;
     let statistics = this.getStatistics();
     if (this.currentStatisticIndex != undefined) {
       this.currentMatch.statistics[this.currentStatisticIndex] = statistics;

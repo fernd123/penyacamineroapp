@@ -41,7 +41,7 @@ export class PlayerSavePage implements OnInit {
       firstname: [player != undefined ? player.firstname : '', Validators.required],
       lastname: [player != undefined ? player.lastname : '', Validators.required],
       nickname: [player != undefined ? player.nickname : '', null],
-      age: [player != undefined ? player.age : '', Validators.required],
+      birthday: [player != undefined ? player.birthday : '', Validators.required],
       mainPosition: [player != undefined ? player.mainPosition : '', Validators.required],
       secondPosition: [player != undefined ? player.secondPosition : '', null],
       thirdPosition: [player != undefined ? player.thirdPosition : '', null],

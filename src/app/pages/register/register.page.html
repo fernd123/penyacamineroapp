@@ -12,22 +12,28 @@
           </div>
           <div padding>
             <ion-item>
-              <ion-input type="text" formControlName="firstname" placeholder="{{'player.firstname' | translate }}">
+              <ion-label class="formlabel">{{'player.firstname' | translate}}</ion-label>
+              <ion-input class="ion-text-right" type="text" formControlName="firstname"
+                placeholder="{{'player.firstname' | translate }}">
               </ion-input>
             </ion-item>
             <ion-item>
-              <ion-input type="text" formControlName="lastname" placeholder="{{'player.lastname' | translate }}">
+              <ion-label class="formlabel">{{'player.lastname' | translate}}</ion-label>
+              <ion-input class="ion-text-right" type="text" formControlName="lastname"
+                placeholder="{{'player.lastname' | translate }}">
               </ion-input>
             </ion-item>
             <ion-item>
-              <ion-input type="number" formControlName="age" placeholder="{{'player.age' | translate }}">
+              <ion-label class="formlabel">{{'player.birthday' | translate}}</ion-label>
+              <ion-input class="ion-text-right" type="date" formControlName="birthday"
+                placeholder="{{'player.birthday' | translate }}">
               </ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label class="formlabel">{{'player.mainPosition' | translate}}</ion-label>
-              <ion-select formControlName="mainPosition" placeholder="{{'player.mainPosition' | translate}}"
-                interface="action-sheet">
+              <ion-select class="ion-text-right" formControlName="mainPosition"
+                placeholder="{{'player.mainPosition' | translate}}" interface="action-sheet">
                 <ion-select-option value="position.goalkeeper">{{ 'position.goalkeeper' | translate}}
                 </ion-select-option>
                 <ion-select-option value="position.defense">{{ 'position.defense' | translate}}</ion-select-option>
@@ -38,7 +44,8 @@
 
             <ion-item>
               <ion-label class="formlabel">{{'player.leg' | translate}}</ion-label>
-              <ion-select formControlName="leg" interface="action-sheet" placeholder="{{'player.leg' | translate}}">
+              <ion-select class="ion-text-right" formControlName="leg" interface="action-sheet"
+                placeholder="{{'player.leg' | translate}}">
                 <ion-select-option value="leg.right">{{ 'leg.right' | translate}}</ion-select-option>
                 <ion-select-option value="leg.left">{{ 'leg.left' | translate}}</ion-select-option>
                 <ion-select-option value="leg.noLeg">{{ 'leg.noLeg' | translate}}</ion-select-option>
@@ -46,12 +53,14 @@
             </ion-item>
 
             <ion-item>
-              <ion-input name="email" type="text" formControlName="email"
+              <ion-label class="formlabel">{{'email' | translate}}</ion-label>
+              <ion-input class="ion-text-right" name="email" type="text" formControlName="email"
                 placeholder="{{'email' | translate }}@mail.com">
               </ion-input>
             </ion-item>
             <ion-item>
-              <ion-input name="password" type="password" formControlName="password"
+              <ion-label class="formlabel">{{'password' | translate}}</ion-label>
+              <ion-input class="ion-text-right" name="password" type="password" formControlName="password"
                 placeholder="{{'password' | translate }}">
               </ion-input>
             </ion-item>

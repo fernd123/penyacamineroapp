@@ -25,18 +25,21 @@ export class PlayerPage implements OnInit {
   }
 
   async presentModal(player: Player, card: any) {
-    if (card != undefined) {
-      this.selectedCard != undefined ? this.selectedCard.el.style.background = '' : '';
-      this.selectedCard = card;
-      card.el.style.background = '#00a0406b';
-    }
-    const modal = await this.modalController.create({
-      component: PlayerSavePage,
-      componentProps: {
-        'currentPlayer': player
+    let isUserAdmin = (localStorage.getItem('isUserAdmin') == "true");
+    if (isUserAdmin) {
+      if (card != undefined) {
+        this.selectedCard != undefined ? this.selectedCard.el.style.background = '' : '';
+        this.selectedCard = card;
+        card.el.style.background = '#00a0406b';
       }
-    });
-    return await modal.present();
+      const modal = await this.modalController.create({
+        component: PlayerSavePage,
+        componentProps: {
+          'currentPlayer': player
+        }
+      });
+      return await modal.present();
+    }
   }
 
   deletePlayer(id: string) {

@@ -15,12 +15,13 @@
     "loading": "Loading",
     "statistics": "Statistics",
     "password": "Password",
-    "email": "email",
+    "email": "Email",
     "myprofile": "My Profile",
     "register": {
         "title": "Create your account",
         "submit": "Register",
-        "back": "Back"
+        "back": "Back",
+        "saveSuccess": "Successfully registered!"
     },
     "login": {
         "title": "Login",
@@ -31,7 +32,8 @@
         "auth/user-not-found": "There is no user record corresponding to this identifier. The user may have been deleted.",
         "auth/wrong-password": "The password is invalid or the user does not have a password",
         "auth/email-already-in-use": "The email address is already in use by another account",
-        "auth/weak-password": "Password should be at least 6 characters"
+        "auth/weak-password": "Password should be at least 6 characters",
+        "auth/invalid-email": "The email address is badly formatted"
     },
     "player": {
         "newPlayer": "New Player",
@@ -39,7 +41,7 @@
         "firstname": "Firstname",
         "lastname": "Lastname",
         "nickname": "Nickname",
-        "age": "Age",
+        "birthday": "Birthday",
         "mainPosition": "Main Position",
         "secondPosition": "Second Position",
         "thirdPosition": "Third Position",

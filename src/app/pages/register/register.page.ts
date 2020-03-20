@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { getDate } from 'src/app/models/parent.model';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
+import { ToastController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -26,7 +27,9 @@ export class RegisterPage implements OnInit {
     public translateService: TranslateService,
     private playerService: PlayerService,
     private userService: UserService,
-    private router: Router
+    private toastController: ToastController,
+    private router: Router,
+    private loadingCtrl: LoadingController
   ) {
   }
 
@@ -39,7 +42,7 @@ export class RegisterPage implements OnInit {
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
       nickname: ['', null],
-      age: ['', null],
+      birthday: [null, Validators.required],
       mainPosition: ['', Validators.required],
       secondPosition: ['', null],
       thirdPosition: ['', null],
@@ -52,6 +55,12 @@ export class RegisterPage implements OnInit {
   }
 
   async onSubmit() {
+
+    let loading = await this.loadingCtrl.create({
+      message: this.translateService.instant('loading')
+    });
+    loading.present();
+
     // Create the user
     try {
       var response = await this.fAuth.auth.createUserWithEmailAndPassword(
@@ -64,20 +73,29 @@ export class RegisterPage implements OnInit {
         this.userService.addUser(user).then(resUser => {
           // Create the player
           let player: Player = this.getPlayerFromForm(resUser.id);
-          this.playerService.addPlayer(player).then(resPlayer => {
+          this.playerService.addPlayer(player).then(async resPlayer => {
             this.errorMessage = null;
             console.log("Successfully registered!");
+            const toast = await this.toastController.create({
+              message: this.translateService.instant('register.saveSuccess'),
+              duration: 2000
+            });
+            loading.dismiss();
+            toast.present();
             this.router.navigateByUrl('/login');
           }, error => {
+            loading.dismiss();
             console.log(error);
             this.errorMessage = error.message;
           });
         }, error => {
+          loading.dismiss();
           console.log(error);
           this.errorMessage = error.message;
         });
       }
     } catch (err) {
+      loading.dismiss();
       console.error(err);
       this.errorMessage = this.translateService.instant("login." + err.code);
     }
@@ -98,7 +116,7 @@ export class RegisterPage implements OnInit {
     player.firstname = this.userForm.get('firstname').value;
     player.lastname = this.userForm.get('lastname').value;
     player.nickname = this.userForm.get('nickname').value;
-    player.age = this.userForm.get('age').value;
+    player.birthday = this.userForm.get('birthday').value;
     player.status = this.userForm.get('status').value;
     player.leg = this.userForm.get('leg').value;
     player.mainPosition = this.userForm.get('mainPosition').value;

@@ -1,12 +1,30 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      <ion-icon *ngIf="showBack == true" name="arrow-back" (click)="back()"></ion-icon>
-      {{title | translate}}
-      <img *ngIf="showLanguage == true" src="assets/images/spain.png" height="20" width="20"
-        (click)="setLanguage('es')">
-      <img *ngIf="showLanguage == true" src="assets/images/usa.png" height="20" width="20" style="margin-left: 10px;"
-        (click)="setLanguage('en')">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-icon *ngIf="showBack == true" name="arrow-back" (click)="back()"></ion-icon>
+            {{title | translate}}
+            <img *ngIf="showLanguage == true" src="assets/images/spain.png" height="20" width="20"
+              (click)="setLanguage('es')">
+            <img *ngIf="showLanguage == true" src="assets/images/usa.png" height="20" width="20"
+              style="margin-left: 10px;" (click)="setLanguage('en')">
+          </ion-col>
+
+          <ion-col>
+          </ion-col>
+
+          <ion-col *ngIf="showCurrentPlayer == true" class="ion-text-right"
+            style="color: rgb(54, 128, 56); font-size: small;">
+            {{getCurrentUser()}}
+            <!--<ion-button size="small" class="menuButtonLogout" (click)="logout()"
+              style="height: 20px;margin-top: 0px;margin-bottom: 0px;">
+              {{'login.logout' | translate}}
+            </ion-button> -->
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-title>
   </ion-toolbar>
 </ion-header>

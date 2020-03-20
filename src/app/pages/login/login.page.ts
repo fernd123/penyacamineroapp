@@ -74,9 +74,11 @@ export class LoginPage implements OnInit {
             return;
           }
           let userId = "";
+          let isUserAdmin = false;
           snapshot.forEach(doc => {
             console.log(doc.id, '=>', doc.data());
             userId = doc.id;
+            isUserAdmin = doc.data().isAdmin;
           });
 
           this.playerService.getPlayerByParameterId("userId", userId).then(snapshot => {
@@ -87,6 +89,7 @@ export class LoginPage implements OnInit {
             }
             snapshot.forEach(doc => {
               localStorage.setItem('userId', userId);
+              localStorage.setItem('isUserAdmin', isUserAdmin + "");
               localStorage.setItem('playerId', doc.id);
               localStorage.setItem('currentPlayer', JSON.stringify(doc.data()));
             });
@@ -103,12 +106,12 @@ export class LoginPage implements OnInit {
             console.log('Error getting documents', err);
             loading.dismiss();
           });
-
       }
 
     } catch (err) {
       console.error(err);
       this.errorMessage = this.translateService.instant("login." + err.code);
+      loading.dismiss();
     }
   }
 }

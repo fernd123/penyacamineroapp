@@ -15,12 +15,13 @@
     "loading": "Cargando datos",
     "statistics": "Estadísticas",
     "password": "Contraseña",
-    "email": "email",
+    "email": "Email",
     "myprofile": "Mi Perfil",
     "register": {
         "title": "Crea tu cuenta",
         "submit": "Registrarme",
-        "back": "Volver"
+        "back": "Volver",
+        "saveSuccess": "Usuario registrado con éxito"
     },
     "login": {
         "title": "Login",
@@ -31,7 +32,8 @@
         "auth/user-not-found": "No existe ningún usuario con el email introducido",
         "auth/wrong-password": "Usuario o contraseña inválido",
         "auth/email-already-in-use": "El email introducido ya existe en el sistema",
-        "auth/weak-password": "La contraseña debe tener como mínimo 6 carácteres "
+        "auth/weak-password": "La contraseña debe tener como mínimo 6 carácteres",
+        "auth/invalid-email": "Email incorrecto"
     },
     "player": {
         "newPlayer": "Nuevo Jugador",
@@ -39,7 +41,7 @@
         "firstname": "Nombre",
         "lastname": "Apellido",
         "nickname": "Apodo",
-        "age": "Edad",
+        "birthday": "Fecha nacimiento",
         "mainPosition": "Posición principal",
         "secondPosition": "Posición secundaria",
         "thirdPosition": "Posición alternativa",

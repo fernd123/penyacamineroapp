@@ -15,12 +15,12 @@
               <div padding>
                 <ion-item>
                   <ion-input name="email" type="text" formControlName="email"
-                    placeholder="{{'email' | translate }}@mail.com">
+                    placeholder="{{'email' | translate }}@mail.com" (keydown.enter)="login()">
                   </ion-input>
                 </ion-item>
                 <ion-item>
                   <ion-input name="password" type="password" formControlName="password"
-                    placeholder="{{'password' | translate }}">
+                    placeholder="{{'password' | translate }}" (keydown.enter)="login()">
                   </ion-input>
                 </ion-item>
                 <ion-row>

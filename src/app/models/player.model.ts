@@ -5,7 +5,7 @@ export class Player extends Parent {
     firstname: string;
     lastname: string;
     nickname: string;
-    age: Number;
+    birthday: Date;
     mainPosition: string;
     secondPosition: string;
     thirdPosition: string;

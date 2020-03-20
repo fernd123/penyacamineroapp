@@ -1,4 +1,4 @@
-<app-header [title]="title" [showLanguage]="true"></app-header>
+<app-header [title]="title" [showLanguage]="true" [showCurrentPlayer]="true"></app-header>
 
 <ion-content>
 
@@ -10,8 +10,10 @@
     </ion-card-header>
 
     <ion-card-content>
-      {{ player.mainPosition | translate }} / {{player.secondPosition | translate}}
-      {{ player.age }}
+      {{'player.mainPosition' | translate }}: {{ player.mainPosition | translate }}
+      {{player.secondPosition | translate}}<br>
+      {{'player.birthday' | translate}}: {{ player.birthday | date:"dd/MM/yyyy" }} <br>
+      {{'player.leg' | translate }}: {{player.leg | translate}}
     </ion-card-content>
   </ion-card>
 

@@ -25,6 +25,7 @@ export class HomePage {
 
   logout() {
     localStorage.removeItem('userId');
+    localStorage.removeItem('isUserAdmin');
     this.fAuth.auth.signOut();
     return this.router.navigateByUrl('/login');
   }
