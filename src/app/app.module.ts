@@ -13,7 +13,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 
 /* FIREBASE */
-import { firebaseConfig } from '../environments/firebaseConfig';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from 'angularfire2/auth'
 
@@ -40,6 +39,17 @@ registerLocaleData(localeEs, 'es');
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient, "assets/i18n/", ".json");
 }
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyBEk3ovFLldKX1hdPPjvFVnqUTiPXF6qwI",
+  authDomain: "camineroheroapp.firebaseapp.com",
+  databaseURL: "https://camineroheroapp.firebaseio.com",
+  projectId: "camineroheroapp",
+  storageBucket: "camineroheroapp.appspot.com",
+  messagingSenderId: "937204455264",
+  appId: "1:937204455264:web:eea709ccc7eb9025d47005",
+  measurementId: "G-P4Y1RK62V6"
+};
 
 @NgModule({
   declarations: [AppComponent],
