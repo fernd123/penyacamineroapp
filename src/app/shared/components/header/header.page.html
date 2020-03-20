@@ -1,0 +1,12 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <ion-icon *ngIf="showBack == true" name="arrow-back" (click)="back()"></ion-icon>
+      {{title | translate}}
+      <img *ngIf="showLanguage == true" src="assets/images/spain.png" height="20" width="20"
+        (click)="setLanguage('es')">
+      <img *ngIf="showLanguage == true" src="assets/images/usa.png" height="20" width="20" style="margin-left: 10px;"
+        (click)="setLanguage('en')">
+    </ion-title>
+  </ion-toolbar>
+</ion-header>

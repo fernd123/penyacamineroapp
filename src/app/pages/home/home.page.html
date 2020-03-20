@@ -1,0 +1,46 @@
+<app-header [title]="title" [showLanguage]="true" [showBack]="false"></app-header>
+
+<ion-content [fullscreen]="true">
+
+  <div>
+    <img src="assets/images/penya_caminero_escudo.jpg" height="200" width="250" class="center">
+
+    <ion-grid>
+
+      <ion-row>
+        <ion-col>
+          <ion-button expand="block" class="menuButton" (click)="showProfile()">{{'myprofile' | translate}}</ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-button expand="block" class="menuButton" [routerLink]="['/player']">{{'players' | translate}}
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-button expand="block" class="menuButton" [routerLink]="['/match']">{{'matches' | translate}}</ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-button expand="block" class="menuButton" [routerLink]="['/statistic']">{{'statistics' | translate}}
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-button expand="block" class="menuButtonLogout" (click)="logout()">{{'login.logout' | translate}}
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+  </div>
+
+</ion-content>

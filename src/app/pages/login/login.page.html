@@ -1,0 +1,57 @@
+<ion-content [fullscreen]="true">
+
+  <div id="container">
+
+    <ion-card>
+      <p><a>
+          {{'app.title' | translate}}
+        </a></p>
+
+      <img src="assets/images/penya_caminero_escudo.jpg" height="125" width="150" class="center">
+      <form [formGroup]="userForm" (submit)="onSubmit()">
+        <ion-grid>
+          <ion-row color="primary" justify-content-center>
+            <ion-col align-self-center size-md="12" size-lg="12" size-xs="12">
+              <div padding>
+                <ion-item>
+                  <ion-input name="email" type="text" formControlName="email"
+                    placeholder="{{'email' | translate }}@mail.com">
+                  </ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-input name="password" type="password" formControlName="password"
+                    placeholder="{{'password' | translate }}">
+                  </ion-input>
+                </ion-item>
+                <ion-row>
+                  <ion-col>
+                    <ion-label class="formlabel">{{'login.rememberme' | translate}} </ion-label>
+                    <ion-checkbox color="dark" formControlName="rememberme"></ion-checkbox>
+                  </ion-col>
+                </ion-row>
+              </div>
+
+              <div padding *ngIf="errorMessage != null" class="loginError">
+                <div text-center>
+                  {{ errorMessage | translate }}
+                </div>
+              </div>
+
+              <div padding>
+                <ion-button expand="block" class="menuButton" [disabled]="userForm.invalid" (click)="login()">
+                  {{'login.submit' | translate}}
+                </ion-button>
+              </div>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <div text-center class="center" style="margin-bottom: 5em;">
+              {{ 'login.registermessage' | translate }} <a routerLink='/register'>Regístrate</a>
+            </div>
+          </ion-row>
+        </ion-grid>
+      </form>
+    </ion-card>
+  </div>
+</ion-content>

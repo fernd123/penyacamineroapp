@@ -1,0 +1,63 @@
+<app-header [title]="title" [showLanguage]="true" [showBack]="true"></app-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-grid>
+    <ion-row *ngIf="!showTableResult">
+      <ion-col>
+        <ion-button expand="block" class="menuButtonStatistics" (click)="show('matches')">
+          {{'statistic.maxmatches' | translate}}</ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="!showTableResult">
+      <ion-col>
+        <ion-button expand="block" class="menuButtonStatistics" (click)="show('goals')">
+          {{'statistic.maxgoals' | translate}}</ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="!showTableResult">
+      <ion-col>
+        <ion-button expand="block" class="menuButtonStatistics" (click)="show('assists')">
+          {{'statistic.maxassists' | translate}}
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" class="menuButtonCancel" (click)="close()">
+          {{'close' | translate}}</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-card *ngIf="showTableResult">
+    <ion-grid>
+      <ion-row style="border-bottom: groove;" class="tableHeader">
+        <ion-col align-self-center size-md="3" size-lg="3" size-xs="3">
+          <ion-label>#</ion-label>
+        </ion-col>
+        <ion-col align-self-center size-md="6" size-lg="6" size-xs="6">
+          <ion-label>{{'name' | translate}}</ion-label>
+        </ion-col>
+        <ion-col align-self-center size-md="2" size-lg="2" size-xs="2">
+          <ion-label>{{type | translate}}</ion-label>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="border-bottom: groove;" *ngFor="let s of showList; let i=index">
+        <ion-col align-self-center size-md="3" size-lg="3" size-xs="3">
+          <ion-label>{{i+1}}</ion-label>
+        </ion-col>
+        <ion-col align-self-center size-md="6" size-lg="6" size-xs="6">
+          <ion-label>{{s.player}}</ion-label>
+        </ion-col>
+        <ion-col align-self-center size-md="2" size-lg="2" size-xs="2">
+          <ion-label>{{s.value}}</ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+</ion-content>

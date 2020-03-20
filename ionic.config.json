@@ -1,0 +1,7 @@
+{
+  "name": "camineroHeroesApp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

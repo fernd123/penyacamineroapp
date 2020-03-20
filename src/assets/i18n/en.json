@@ -1,0 +1,114 @@
+{
+    "app": {
+        "title": "Peña Caminero"
+    },
+    "home": "Main Page",
+    "name": "Name",
+    "players": "Players",
+    "matches": "Matches",
+    "goals": "Goals",
+    "assists": "Assists",
+    "user": "User",
+    "teams": "Teams",
+    "save": "Save",
+    "close": "Close",
+    "loading": "Loading",
+    "statistics": "Statistics",
+    "password": "Password",
+    "email": "email",
+    "myprofile": "My Profile",
+    "register": {
+        "title": "Create your account",
+        "submit": "Register",
+        "back": "Back"
+    },
+    "login": {
+        "title": "Login",
+        "submit": "Login",
+        "logout": "Logout",
+        "rememberme": "Remember Me",
+        "registermessage": "If you don't have an account, please register first",
+        "auth/user-not-found": "There is no user record corresponding to this identifier. The user may have been deleted.",
+        "auth/wrong-password": "The password is invalid or the user does not have a password",
+        "auth/email-already-in-use": "The email address is already in use by another account",
+        "auth/weak-password": "Password should be at least 6 characters"
+    },
+    "player": {
+        "newPlayer": "New Player",
+        "editPlayer": "Edit Player",
+        "firstname": "Firstname",
+        "lastname": "Lastname",
+        "nickname": "Nickname",
+        "age": "Age",
+        "mainPosition": "Main Position",
+        "secondPosition": "Second Position",
+        "thirdPosition": "Third Position",
+        "profileImage": "Profile Image",
+        "leg": "Leg",
+        "active": "Active",
+        "status": "Status",
+        "saveSuccess": "Player saved",
+        "updateSuccess": "Player updated"
+    },
+    "match": {
+        "typeF": {
+            "football5": "Football 5",
+            "football7": "Football 7",
+            "football11": "Football 11"
+        },
+        "info": "Info",
+        "convocation": "Convocation",
+        "lineups": "Lineups",
+        "title": "Matches",
+        "signIn": "Sign In",
+        "convocationClosed": "Convocation closed",
+        "signInYet": "In the convocation",
+        "noResult": "Pending Match",
+        "result": "Result",
+        "next": "Next Match",
+        "historic": "Historical",
+        "convocationSuccess": "You have successfully signed up!",
+        "statisticsSuccess": "Statistics saved",
+        "signOutSuccess": "You have unsubscribed successfully",
+        "newMatch": "New Match",
+        "editMatch": "Edit Match",
+        "initHour": "Start Hour",
+        "endHour": "End Hour",
+        "date": "Date",
+        "place": "Place",
+        "type": "Type",
+        "localGoals": "Local Goals",
+        "awayGoals": "Away Goals",
+        "lineUpLocal": "Local Lineup",
+        "lineUpAway": "Away Lineup",
+        "active": "Finished",
+        "saveSuccess": "Match saved",
+        "updateSuccess": "Match updated"
+    },
+    "lineup": {
+        "title": "Lineup",
+        "generate": "Generate Lineup"
+    },
+    "position": {
+        "goalkeeper": "Goalkeeper",
+        "defense": "Defense",
+        "midfilder": "Midfilder",
+        "forward": "Forward"
+    },
+    "leg": {
+        "right": "Right",
+        "left": "Left",
+        "noLeg": "I don't have legs"
+    },
+    "status": {
+        "legend": "Legend",
+        "star": "Star",
+        "promise": "Promise",
+        "noob": "Noob"
+    },
+    "statistic": {
+        "maxmatches": "Top Matches",
+        "maxgoals": "Top Scorers",
+        "maxassists": "Top Assistants"
+    }
+}

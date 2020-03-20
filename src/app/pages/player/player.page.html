@@ -1,0 +1,24 @@
+<app-header [title]="title" [showLanguage]="true"></app-header>
+
+<ion-content>
+
+  <ion-card #card *ngFor="let player of (playerList | async)" (click)="presentModal(player, card)">
+    <ion-card-header>
+      <!--<img src="assets/images/spain.png" height="100" width="100" />-->
+      <ion-card-subtitle>{{player.status | translate}}</ion-card-subtitle>
+      <ion-card-title>{{ player.firstname }} {{ player.lastname }}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      {{ player.mainPosition | translate }} / {{player.secondPosition | translate}}
+      {{ player.age }}
+    </ion-card-content>
+  </ion-card>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="presentModal()">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

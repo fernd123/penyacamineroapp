@@ -1,0 +1,186 @@
+<app-header [title]="title" [showLanguage]="false" [showBack]="false"></app-header>
+
+<ion-content>
+
+  <ion-segment [(ngModel)]="segment">
+    <ion-segment-button value="info">
+      {{'match.info' | translate}}
+    </ion-segment-button>
+    <ion-segment-button value="convocation">
+      {{'match.convocation' | translate}}
+    </ion-segment-button>
+    <ion-segment-button value="lineup">
+      {{'match.lineups' | translate}}
+    </ion-segment-button>
+  </ion-segment>
+
+
+  <div [ngSwitch]="segment">
+    <ion-card *ngSwitchCase="'info'">
+      <form [formGroup]="matchForm" (submit)="onSubmit()">
+
+        <ion-grid>
+
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-label class="formlabel">{{'match.date' | translate}}</ion-label>
+                <ion-input class="ion-text-right" type="date" formControlName="date"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-label class="formlabel">{{'match.initHour' | translate}}</ion-label>
+                <ion-datetime displayFormat="HH:mm" formControlName="initHour"></ion-datetime>
+              </ion-item>
+            </ion-col>
+
+            <ion-col>
+              <ion-item>
+                <ion-label class="formlabel">{{'match.endHour' | translate}}</ion-label>
+                <ion-datetime displayFormat="HH:mm" formControlName="endHour"></ion-datetime>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-label class="formlabel">{{'match.place' | translate}}</ion-label>
+                <ion-input class="ion-text-right" type="text" formControlName="place"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-label class="formlabel">{{'match.type' | translate}}</ion-label>
+                <ion-select formControlName="type" interface="action-sheet">
+                  <ion-select-option value="match.typeF.5">{{ 'match.typeF.football5' | translate}}</ion-select-option>
+                  <ion-select-option value="match.typeF.7">{{ 'match.typeF.football7' | translate}}</ion-select-option>
+                  <ion-select-option value="match.typeF.11">{{ 'match.typeF.football11' | translate}}
+                  </ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-label class="formlabel">{{'match.localGoals' | translate}}</ion-label>
+                <ion-input class="ion-text-right" type="number" formControlName="localGoals"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col>
+              <ion-item>
+                <ion-label class="formlabel">{{'match.awayGoals' | translate}}</ion-label>
+                <ion-input class="ion-text-right" type="number" formControlName="awayGoals"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-label class="formlabel">{{'match.active' | translate}}</ion-label>
+                <ion-checkbox color="dark" formControlName="active"></ion-checkbox>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-button expand="block" color="warning" type="button" (click)="close()">{{'close' | translate}}
+              </ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button expand="block" color="success" type="submit" [disabled]="!matchForm.valid">
+                {{'save' | translate}}
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+      </form>
+    </ion-card>
+
+    <ion-card *ngSwitchCase="'convocation'">
+      <ion-button expand="block" color="success" *ngIf="!showPlayerStatistic" (click)="signInConvocation()" [disabled]="this.currentMatch == undefined || this.currentMatch.statistics.length == 10 
+        || isUserSignedInConvocation() || this.currentMatch.active == true">
+        {{ getSignInButtonText() | translate }}
+        <ion-icon name="key" *ngIf="this.currentMatch == undefined || this.currentMatch.statistics.length == 10">
+        </ion-icon>
+      </ion-button>
+
+      <ion-list *ngIf="!showPlayerStatistic">
+        <ion-item button *ngFor="let statistic of (currentMatch?.statistics); let i = index;"
+          (click)="showStatistics(statistic, i)">
+          <ion-button color="danger" (click)="signOutConvocation(statistic.id)"
+            *ngIf="currentMatch.active == false && checkIfPlayerIsCurrentPlayer(statistic.playerId)">
+            <ion-icon name="trash"></ion-icon>
+          </ion-button>
+          {{ statistic.playerName }}
+        </ion-item>
+      </ion-list>
+
+      <ion-button expand="block" color="warning" (click)="this.currentPlayer = null; modalController.dismiss()"
+        *ngIf="!showPlayerStatistic">
+        {{ 'close' | translate }}
+      </ion-button>
+
+      <ion-grid *ngIf="showPlayerStatistic">
+        <form [formGroup]="statisticForm">
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-label class="formlabel">{{'goals' | translate}} </ion-label>
+                <ion-input name="goals" type="number" formControlName="goals">
+                </ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-label class="formlabel">{{'assists' | translate}} </ion-label>
+                <ion-input name="assists" type="number" formControlName="assists">
+                </ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>
+              <ion-button expand="block" color="warning"
+                (click)="this.currentPlayer = null; showPlayerStatistic = !showPlayerStatistic; statisticForm.reset()">
+                {{ 'register.back' | translate }}
+              </ion-button>
+            </ion-col>
+
+            <ion-col>
+              <ion-button expand="block" color="success" (click)="saveStatistics()" [disabled]="statisticForm.invalid">
+                {{ 'save' | translate }}
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </form>
+      </ion-grid>
+    </ion-card>
+
+    <ion-card *ngSwitchCase="'lineup'">
+      <ion-button expand="block" color="success" (click)="generateLineUp()">
+        {{ 'lineup.generate' | translate }}
+      </ion-button>
+      TODAVIA NO FUNCIONA
+    </ion-card>
+  </div>
+</ion-content>

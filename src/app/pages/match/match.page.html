@@ -1,0 +1,56 @@
+<app-header [title]="title" [showLanguage]="true"></app-header>
+
+<ion-content>
+
+  <ion-segment [(ngModel)]="segment">
+    <ion-segment-button value="next">
+      {{'match.next' | translate}}
+    </ion-segment-button>
+    <ion-segment-button value="historic">
+      {{'match.historic' | translate}}
+    </ion-segment-button>
+  </ion-segment>
+
+
+  <div [ngSwitch]="segment">
+    <div *ngSwitchCase="'next'">
+      <ion-card #card *ngFor="let match of (matchList | async)" (click)="presentModal(match, card)">
+        <ion-card-header>
+          <ion-card-subtitle> {{match.date | date:'EEEE d MMMM y'}},
+            {{match.initHour | date:'HH:mm'}}-{{match.endHour | date:'HH:mm'}}
+          </ion-card-subtitle>
+          <ion-card-title> {{getMatchTitle(match)}}
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          {{getMatchGoalsStatistics(match) }} <br>
+          {{getMatchAssistStatistic(match) }}
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <div *ngSwitchCase="'historic'">
+      <ion-card #cardH *ngFor="let match of (matchHistoricList | async)" (click)="presentModal(match, cardH)">
+        <ion-card-header>
+          <ion-card-subtitle> {{match.date | date:'EEEE d MMMM y'}},
+            {{match.initHour | date:'HH:mm'}}-{{match.endHour | date:'HH:mm'}}
+          </ion-card-subtitle>
+          <ion-card-title> {{getMatchTitle(match)}}
+          </ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          {{getMatchGoalsStatistics(match) }} <br>
+          {{getMatchAssistStatistic(match) }}
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="presentModal()">
+      <ion-fab-button>
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+
+  </div>
+</ion-content>

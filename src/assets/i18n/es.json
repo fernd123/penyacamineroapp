@@ -1,0 +1,114 @@
+{
+    "app": {
+        "title": "Peña Caminero"
+    },
+    "home": "Inicio",
+    "name": "Nombre",
+    "players": "Jugadores",
+    "matches": "Partidos",
+    "goals": "Goles",
+    "assists": "Asistencias",
+    "user": "Usuario",
+    "teams": "Equipos",
+    "save": "Guardar",
+    "close": "Cerrar",
+    "loading": "Cargando datos",
+    "statistics": "Estadísticas",
+    "password": "Contraseña",
+    "email": "email",
+    "myprofile": "Mi Perfil",
+    "register": {
+        "title": "Crea tu cuenta",
+        "submit": "Registrarme",
+        "back": "Volver"
+    },
+    "login": {
+        "title": "Login",
+        "submit": "Entrar",
+        "logout": "Salir",
+        "rememberme": "Recordar datos",
+        "registermessage": "¿No tienes cuenta?",
+        "auth/user-not-found": "No existe ningún usuario con el email introducido",
+        "auth/wrong-password": "Usuario o contraseña inválido",
+        "auth/email-already-in-use": "El email introducido ya existe en el sistema",
+        "auth/weak-password": "La contraseña debe tener como mínimo 6 carácteres "
+    },
+    "player": {
+        "newPlayer": "Nuevo Jugador",
+        "editPlayer": "Editar Jugador",
+        "firstname": "Nombre",
+        "lastname": "Apellido",
+        "nickname": "Apodo",
+        "age": "Edad",
+        "mainPosition": "Posición principal",
+        "secondPosition": "Posición secundaria",
+        "thirdPosition": "Posición alternativa",
+        "profileImage": "Imagen perfil",
+        "leg": "Pierna",
+        "active": "En activo",
+        "status": "Status",
+        "saveSuccess": "Jugador guardado",
+        "updateSuccess": "Jugador actualizado"
+    },
+    "match": {
+        "typeF": {
+            "football5": "Fútbol 5",
+            "football7": "Fútbol 7",
+            "football11": "Fútbol 11"
+        },
+        "info": "Info",
+        "convocation": "Convocatoria",
+        "lineups": "Alineaciones",
+        "signIn": "Apuntarme",
+        "convocationClosed": "Convocatoria cerrada",
+        "signInYet": "Ya estás apuntado",
+        "title": "Partidos",
+        "noResult": "Partido por disputar",
+        "result": "Resultado",
+        "next": "Próximos partidos",
+        "historic": "Histórico",
+        "convocationSuccess": "¡Te has apuntado con éxito a la convocatoria!",
+        "statisticsSuccess": "Estadísticas guardadas",
+        "signOutSuccess": "Te has desapuntado de la convocatoria",
+        "newMatch": "Nuevo partido",
+        "editMatch": "Editar Partido",
+        "initHour": "Hora inicio",
+        "endHour": "Hora fin",
+        "date": "Fecha",
+        "place": "Lugar",
+        "type": "Tipo",
+        "localGoals": "Goles locales",
+        "awayGoals": "Goles visitantes",
+        "lineUpLocal": "Alineación local",
+        "lineUpAway": "Alineación visitante",
+        "active": "Finalizado",
+        "saveSuccess": "Partido guardado",
+        "updateSuccess": "Partido actualizado"
+    },
+    "lineup": {
+        "title": "Alineación",
+        "generate": "Generar alineaciones"
+    },
+    "position": {
+        "goalkeeper": "Portero",
+        "defense": "Defensa",
+        "midfilder": "Mediocentro",
+        "forward": "Delantero"
+    },
+    "leg": {
+        "right": "Diestro",
+        "left": "Zurdo",
+        "noLeg": "¡No tengo piernas!"
+    },
+    "status": {
+        "legend": "Leyenda",
+        "star": "Estrella",
+        "promise": "Promesa",
+        "noob": "Becario"
+    },
+    "statistic": {
+        "maxmatches": "Partidos",
+        "maxgoals": "Goles",
+        "maxassists": "Asistencias"
+    }
+}
