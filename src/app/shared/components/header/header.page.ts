@@ -37,7 +37,10 @@ export class HeaderPage implements OnInit {
 
     getCurrentUser() {
         let currentPlayer = JSON.parse(localStorage.getItem('currentPlayer'));
-        return `${currentPlayer.firstname} ${currentPlayer.lastname}`;
+        let isUserAdmin = (localStorage.getItem('isUserAdmin') == "true");
+        let userLabel = currentPlayer.firstname;
+        userLabel = isUserAdmin ? userLabel + " (admin)" : userLabel;
+        return userLabel;
     }
 
     logout() {

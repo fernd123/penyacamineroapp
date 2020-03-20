@@ -59,6 +59,10 @@
   font-weight: bold !important;
 }
 
+.ionitemdisabled{
+  --ion-background-color:rgb(180, 175, 175);
+}
+
 ion-content{
     --ion-background-color: rgb(247, 247, 247);
 }

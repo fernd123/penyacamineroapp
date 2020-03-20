@@ -40,6 +40,7 @@ export class MatchPage implements OnInit {
     let isUserAdmin = (localStorage.getItem('isUserAdmin') == "true");
     return isUserAdmin;
   }
+
   async presentModal(match: Match, card: any) {
     if (card != undefined) {
       this.selectedCard != undefined ? this.selectedCard.el.style.background = '' : '';

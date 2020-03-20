@@ -7,6 +7,8 @@ import { getDate } from 'src/app/models/parent.model';
 import { TranslateService } from '@ngx-translate/core';
 import { MatchStatisticsService } from 'src/app/services/match-statistics.service';
 import { Player } from 'src/app/models/player.model';
+import { PlayerService } from 'src/app/services/player.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-match-save',
@@ -23,6 +25,7 @@ export class MatchSavePage implements OnInit {
   public segment: string = 'info';
   public showPlayerStatistic: boolean = false;
   private title: string;
+  public playerList: Observable<Player[]>;
 
   constructor(
     public modalController: ModalController,
@@ -30,11 +33,13 @@ export class MatchSavePage implements OnInit {
     public toastController: ToastController,
     private translateService: TranslateService,
     private matchService: MatchService,
+    private playerService: PlayerService,
     private matchStatisticsService: MatchStatisticsService
   ) {
   }
 
   ngOnInit() {
+    this.playerList = this.playerService.getPlayers();
     this.title = this.currentMatch == undefined ? 'match.newMatch' : 'match.editMatch';
     this.matchForm = this.buildFormGroup();
     this.statisticForm = this.buildFormGroupStatistics();
@@ -63,8 +68,8 @@ export class MatchSavePage implements OnInit {
     return this.formBuilder.group({
       matchId: ['', null],
       playerId: ['', null],
-      goals: [null, Validators.required],
-      assists: [null, Validators.required]
+      goals: [null, [Validators.required, Validators.min(0)]],
+      assists: [null, [Validators.required, Validators.min(0)]]
     });
   }
 
@@ -143,6 +148,11 @@ export class MatchSavePage implements OnInit {
     })
   }
 
+  showIfUserIsAdmin() {
+    let isUserAdmin = (localStorage.getItem('isUserAdmin') == "true");
+    return isUserAdmin;
+  }
+
   async signOutConvocation(playerId: string, index: number) {
     let statisticIdxRemove: number = 0;
 
@@ -183,7 +193,8 @@ export class MatchSavePage implements OnInit {
   }
 
   showStatistics(statistic: any, index: number) {
-    if (this.currentMatch.statistics != undefined && this.checkIfPlayerIsCurrentPlayer(statistic.playerId)) {
+    if (this.currentMatch.statistics != undefined &&
+      (this.showIfUserIsAdmin() || this.checkIfPlayerIsCurrentPlayer(statistic.playerId))) {
       this.currentPlayer = statistic.playerId;
       this.showPlayerStatistic = !this.showPlayerStatistic;
       this.currentStatisticIndex = index;
@@ -230,5 +241,42 @@ export class MatchSavePage implements OnInit {
     return statistics;
   }
 
+  async onChange($event) {
+    let currentPlayer = $event.target.value;
+    if (currentPlayer == null) {
+      return;
+    }
+    let isPlayerInConvocation = false;
+    // If the player is already in the convocation, will be not added
+    this.currentMatch.statistics.forEach(async s => {
+      if (s.playerId == currentPlayer.id) {
+        isPlayerInConvocation = true;
+      }
+    });
+
+    if (isPlayerInConvocation) {
+      const toast = await this.toastController.create({
+        message: this.translateService.instant('match.convocationPlayerError'),
+        duration: 2000
+      });
+      toast.present();
+      $event.target.value = null;
+      return;
+    }
+
+    this.currentMatch.statistics.push({ playerId: currentPlayer.id, playerName: `${currentPlayer.firstname} ${currentPlayer.lastname}`, assists: 0, goals: 0 });
+    this.matchService.updateMatch(this.currentMatch.id, this.currentMatch).then(async res => {
+      const toast = await this.toastController.create({
+        message: this.translateService.instant('match.convocationSuccess'),
+        duration: 2000
+      });
+      toast.present();
+      $event.target.value = null;
+    })
+  }
+
+  addPlayer() {
+
+  }
 
 }

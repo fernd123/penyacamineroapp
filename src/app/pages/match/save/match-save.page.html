@@ -121,20 +121,36 @@
       </ion-button>
 
       <ion-list *ngIf="!showPlayerStatistic">
-        <ion-item button *ngFor="let statistic of (currentMatch?.statistics); let i = index;"
-          (click)="showStatistics(statistic, i)">
+        <ion-item button
+          [ngClass]="{'ionitemdisabled' : !showIfUserIsAdmin() && !checkIfPlayerIsCurrentPlayer(statistic.playerId)}"
+          *ngFor="let statistic of (currentMatch?.statistics); let i = index;" (click)="showStatistics(statistic, i)">
           <ion-button color="danger" (click)="signOutConvocation(statistic.id)"
-            *ngIf="currentMatch.active == false && checkIfPlayerIsCurrentPlayer(statistic.playerId)">
+            *ngIf="(showIfUserIsAdmin()) || (currentMatch.active == false && checkIfPlayerIsCurrentPlayer(statistic.playerId))">
             <ion-icon name="trash"></ion-icon>
           </ion-button>
           {{ statistic.playerName }}
         </ion-item>
       </ion-list>
 
+      <ion-item *ngIf="showIfUserIsAdmin() && !showPlayerStatistic && this.currentMatch != undefined">
+        <ion-label class="formlabel">{{'add' | translate}}</ion-label>
+        <ion-select name="playerManual" interface="action-sheet" (ionChange)="onChange($event)">
+          <ion-select-option *ngFor="let player of (playerList | async)" [value]="player">{{ player.firstname }}
+            {{player.lastname}} </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <!--<ion-button expand="block" color="primary" (click)="addPlayer()"
+        *ngIf="showIfUserIsAdmin() && !showPlayerStatistic && this.currentMatch != undefined">
+        {{ 'add' | translate }}
+      </ion-button>-->
+
       <ion-button expand="block" color="warning" (click)="this.currentPlayer = null; modalController.dismiss()"
         *ngIf="!showPlayerStatistic">
         {{ 'close' | translate }}
       </ion-button>
+
+
 
       <ion-grid *ngIf="showPlayerStatistic">
         <form [formGroup]="statisticForm">
@@ -142,7 +158,7 @@
             <ion-col>
               <ion-item>
                 <ion-label class="formlabel">{{'goals' | translate}} </ion-label>
-                <ion-input name="goals" type="number" formControlName="goals">
+                <ion-input name="goals" type="number" min="0" formControlName="goals">
                 </ion-input>
               </ion-item>
             </ion-col>
@@ -152,7 +168,7 @@
             <ion-col>
               <ion-item>
                 <ion-label class="formlabel">{{'assists' | translate}} </ion-label>
-                <ion-input name="assists" type="number" formControlName="assists">
+                <ion-input name="assists" type="number" min="0" formControlName="assists">
                 </ion-input>
               </ion-item>
             </ion-col>

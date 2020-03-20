@@ -76,7 +76,6 @@ export class LoginPage implements OnInit {
           let userId = "";
           let isUserAdmin = false;
           snapshot.forEach(doc => {
-            console.log(doc.id, '=>', doc.data());
             userId = doc.id;
             isUserAdmin = doc.data().isAdmin;
           });
