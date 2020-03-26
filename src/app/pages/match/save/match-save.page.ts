@@ -39,6 +39,7 @@ export class MatchSavePage implements OnInit {
   }
 
   ngOnInit() {
+    this.currentPlayer = JSON.parse(localStorage.getItem('currentPlayer'));
     this.playerList = this.playerService.getPlayers();
     this.title = this.currentMatch == undefined ? 'match.newMatch' : 'match.editMatch';
     this.matchForm = this.buildFormGroup();
@@ -65,21 +66,33 @@ export class MatchSavePage implements OnInit {
   }
 
   protected buildFormGroupStatistics(): FormGroup {
+    let goals = null;
+    let assists = null;
+
+    this.currentMatch.statistics.forEach(s => {
+      if (s.playerId == this.currentPlayer.id) {
+        goals = s.goals;
+        assists = s.assists;
+        return;
+      }
+    });
     return this.formBuilder.group({
       matchId: ['', null],
       playerId: ['', null],
-      goals: [null, [Validators.required, Validators.min(0)]],
-      assists: [null, [Validators.required, Validators.min(0)]]
+      goals: [goals, [Validators.required, Validators.min(0)]],
+      assists: [assists, [Validators.required, Validators.min(0)]]
     });
   }
 
   onSubmit() {
+    debugger;
     let match: Match = this.createFromForm();
     if (this.currentMatch == undefined) {
       this.matchService.addMatch(match).then(async res => {
         const toast = await this.toastController.create({
           message: this.translateService.instant('match.saveSuccess'),
-          duration: 2000
+          duration: 2000,
+          color: 'success'
         });
         toast.present();
         this.close();
@@ -88,7 +101,8 @@ export class MatchSavePage implements OnInit {
       this.matchService.updateMatch(this.currentMatch.id, match).then(async res => {
         const toast = await this.toastController.create({
           message: this.translateService.instant('match.updateSuccess'),
-          duration: 2000
+          duration: 2000,
+          color: 'success'
         });
         toast.present();
         this.close();
@@ -142,7 +156,8 @@ export class MatchSavePage implements OnInit {
     this.matchService.updateMatch(this.currentMatch.id, this.currentMatch).then(async res => {
       const toast = await this.toastController.create({
         message: this.translateService.instant('match.convocationSuccess'),
-        duration: 2000
+        duration: 2000,
+        color: 'success'
       });
       toast.present();
     })
@@ -155,7 +170,6 @@ export class MatchSavePage implements OnInit {
 
   async signOutConvocation(playerId: string, index: number) {
     let statisticIdxRemove: number = 0;
-
 
     // Delete statistics
     for (let i = 0; i < this.currentMatch.statistics.length; i++) {
@@ -176,15 +190,19 @@ export class MatchSavePage implements OnInit {
               this.matchStatisticsService.deleteMatchStatistic(doc.id);
             }
           });
+          this.statisticForm.reset();
           const toast = await this.toastController.create({
             message: this.translateService.instant('match.signOutSuccess'),
-            duration: 2000
+            duration: 2000,
+            color: 'success'
           });
           toast.present();
         } else {
+          this.statisticForm.reset();
           const toast = await this.toastController.create({
             message: this.translateService.instant('match.signOutSuccess'),
-            duration: 2000
+            duration: 2000,
+            color: 'success'
           });
           toast.present();
         }
@@ -214,31 +232,48 @@ export class MatchSavePage implements OnInit {
   }
 
   async saveStatistics() {
-    let statistics = this.getStatistics();
-    if (this.currentStatisticIndex != undefined) {
-      this.currentMatch.statistics[this.currentStatisticIndex] = statistics;
+    let updateMatch = this.setStatistics();
+    debugger;
+    if (updateMatch) {
+      this.matchService.updateMatch(this.currentMatch.id, this.currentMatch).then(async res => {
+        this.showPlayerStatistic = !this.showPlayerStatistic;
+        const toast = await this.toastController.create({
+          message: this.translateService.instant('match.statisticsSuccess'),
+          duration: 2000,
+          color: 'success'
+        });
+        toast.present();
+        this.close();
+      });
     } else {
-      this.currentMatch.statistics.push(statistics);
-    }
-    this.matchService.updateMatch(this.currentMatch.id, this.currentMatch).then(async res => {
-      this.showPlayerStatistic = !this.showPlayerStatistic;
       const toast = await this.toastController.create({
-        message: this.translateService.instant('match.statisticsSuccess'),
-        duration: 2000
+        message: this.translateService.instant('match.noConvocationPlayerError'),
+        duration: 2000,
+        color: 'danger'
       });
       toast.present();
-      this.currentPlayer = null;
-    });
+    }
   }
 
-  private getStatistics() {
+  private setStatistics() {
     let statistics: any = {};
+
+    if (this.currentMatch.statistics.length == 0) {
+      return false;
+    }
+    this.currentMatch.statistics.forEach(s => {
+      if (s.playerId == this.currentPlayer.id) {
+        statistics = s;
+        return false;
+      }
+    });
+
     statistics.matchId = this.currentMatch.id;
-    statistics.playerId = this.currentMatch.statistics[this.currentStatisticIndex].playerId;
-    statistics.playerName = this.currentMatch.statistics[this.currentStatisticIndex].playerName;
+    statistics.playerId = statistics.playerId;//this.currentMatch.statistics.forEach(p=> {});
+    statistics.playerName = statistics.playerName;//this.currentMatch.statistics[this.currentStatisticIndex].playerName;
     statistics.goals = this.statisticForm.get('goals').value;
     statistics.assists = this.statisticForm.get('assists').value;
-    return statistics;
+    return true;
   }
 
   async onChange($event) {
@@ -273,10 +308,6 @@ export class MatchSavePage implements OnInit {
       toast.present();
       $event.target.value = null;
     })
-  }
-
-  addPlayer() {
-
   }
 
 }

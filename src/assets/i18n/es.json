@@ -12,6 +12,7 @@
     "user": "Usuario",
     "teams": "Equipos",
     "save": "Guardar",
+    "cancel": "Cancelar",
     "close": "Cerrar",
     "loading": "Cargando datos",
     "statistics": "Estadísticas",
@@ -74,6 +75,7 @@
         "statisticsSuccess": "Estadísticas guardadas",
         "signOutSuccess": "Te has desapuntado de la convocatoria",
         "convocationPlayerError": "El jugador ya está en la convocatoria",
+        "noConvocationPlayerError": "No estás apuntado en la convocatoria",
         "newMatch": "Nuevo partido",
         "editMatch": "Editar Partido",
         "initHour": "Hora inicio",
@@ -87,7 +89,8 @@
         "lineUpAway": "Alineación visitante",
         "active": "Finalizado",
         "saveSuccess": "Partido guardado",
-        "updateSuccess": "Partido actualizado"
+        "updateSuccess": "Partido actualizado",
+        "mystatistics": "Mis estadíst."
     },
     "lineup": {
         "title": "Alineación",

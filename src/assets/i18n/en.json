@@ -12,6 +12,7 @@
     "user": "User",
     "teams": "Teams",
     "save": "Save",
+    "cancel": "Cancel",
     "close": "Close",
     "loading": "Loading",
     "statistics": "Statistics",
@@ -74,6 +75,7 @@
         "statisticsSuccess": "Statistics saved",
         "signOutSuccess": "You have unsubscribed successfully",
         "convocationPlayerError": "The player is already in the convocation",
+        "noConvocationPlayerError": "You are not signed in the convocation",
         "newMatch": "New Match",
         "editMatch": "Edit Match",
         "initHour": "Start Hour",
@@ -87,7 +89,8 @@
         "lineUpAway": "Away Lineup",
         "active": "Finished",
         "saveSuccess": "Match saved",
-        "updateSuccess": "Match updated"
+        "updateSuccess": "Match updated",
+        "mystatistics": "My Stats."
     },
     "lineup": {
         "title": "Lineup",

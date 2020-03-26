@@ -9,11 +9,13 @@
     <ion-segment-button value="convocation">
       {{'match.convocation' | translate}}
     </ion-segment-button>
-    <ion-segment-button value="lineup">
-      {{'match.lineups' | translate}}
+    <ion-segment-button value="statistics">
+      {{'match.mystatistics' | translate}}
     </ion-segment-button>
+    <!--<ion-segment-button value="lineup">
+      {{'match.lineups' | translate}}
+    </ion-segment-button>-->
   </ion-segment>
-
 
   <div [ngSwitch]="segment">
     <ion-card *ngSwitchCase="'info'">
@@ -123,7 +125,8 @@
       <ion-list *ngIf="!showPlayerStatistic">
         <ion-item button
           [ngClass]="{'ionitemdisabled' : !showIfUserIsAdmin() && !checkIfPlayerIsCurrentPlayer(statistic.playerId)}"
-          *ngFor="let statistic of (currentMatch?.statistics); let i = index;" (click)="showStatistics(statistic, i)">
+          *ngFor="let statistic of (currentMatch?.statistics); let i = index;">
+          <!--(click)="showStatistics(statistic, i)"-->
           <ion-button color="danger" (click)="signOutConvocation(statistic.id)"
             *ngIf="(showIfUserIsAdmin()) || (currentMatch.active == false && checkIfPlayerIsCurrentPlayer(statistic.playerId))">
             <ion-icon name="trash"></ion-icon>
@@ -150,8 +153,7 @@
         {{ 'close' | translate }}
       </ion-button>
 
-
-
+      <!--
       <ion-grid *ngIf="showPlayerStatistic">
         <form [formGroup]="statisticForm">
           <ion-row>
@@ -189,7 +191,51 @@
             </ion-col>
           </ion-row>
         </form>
-      </ion-grid>
+      </ion-grid>-->
+    </ion-card>
+
+    <ion-card *ngSwitchCase="'statistics'">
+      <div *ngIf="!isUserSignedInConvocation()">
+        <h2 class="error">{{'match.noConvocationPlayerError' | translate}}</h2>
+      </div>
+      <form [formGroup]="statisticForm">
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label class="formlabel">{{'goals' | translate}} </ion-label>
+              <ion-input name="goals" type="number" min="0" formControlName="goals"
+                [disabled]="!isUserSignedInConvocation()">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label class="formlabel">{{'assists' | translate}} </ion-label>
+              <ion-input name="assists" type="number" min="0" formControlName="assists"
+                [disabled]="!isUserSignedInConvocation()">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-button expand="block" color="warning" (click)="close()" [disabled]="!isUserSignedInConvocation()">
+              {{ 'cancelar' | translate }}
+            </ion-button>
+          </ion-col>
+
+          <ion-col>
+            <ion-button expand="block" color="success" (click)="saveStatistics()"
+              [disabled]="statisticForm.invalid || !isUserSignedInConvocation()">
+              {{ 'save' | translate }}
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </form>
     </ion-card>
 
     <ion-card *ngSwitchCase="'lineup'">
