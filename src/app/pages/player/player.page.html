@@ -2,9 +2,9 @@
 
 <ion-content>
 
-  <ion-card #card *ngFor="let player of (playerList | async)" (click)="presentModal(player, card)">
+  <!--<ion-card #card *ngFor="let player of (playerList | async)" (click)="presentModal(player, card)">
     <ion-card-header>
-      <!--<img src="assets/images/spain.png" height="100" width="100" />-->
+      <img src="assets/images/spain.png" height="100" width="100" />
       <ion-card-subtitle>{{player.status | translate}}</ion-card-subtitle>
       <ion-card-title>{{ player.firstname }} {{ player.lastname }}</ion-card-title>
     </ion-card-header>
@@ -21,6 +21,63 @@
     <ion-fab-button>
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
-  </ion-fab>
+  </ion-fab>-->
 
+  <ion-card #card *ngFor="let player of (playerList | async); let i = index" (click)="presentModal(player, card)">
+    <div class="wrapper">
+      <!-- *** fut-player-card ***-->
+      <div class="fut-player-card" style="width: 274px;height: 460.6px;">
+        <!-- Player Card Top-->
+        <div class="player-card-top">
+          <div class="player-master-info">
+            <div class="player-rating"><span>{{player.average | number : '1.0-0'}}</span></div>
+            <!--<div class="player-position"><span>RW</span></div>-->
+            <div class="player-position"><span>{{getPlayerPosition(player)}}</span></div>
+            <div class="player-nation"><img src="assets/images/spain.png" alt="España" draggable="false" /></div>
+          </div>
+          <div class="player-picture"><img src="assets/images/ob/ob{{i+1}}.jpg" alt="PlayerImg" draggable="false" />
+            <div class="player-extra"><span>{{ player.mainPosition | translate }}
+                {{player.secondPosition | translate}}</span></div>
+          </div>
+        </div>
+        <!-- Player Card Bottom-->
+        <div class="player-card-bottom">
+          <div class="player-info">
+            <!-- Player Name-->
+            <div class="player-name"><span>{{ player.firstname }} {{ player.lastname }}</span></div>
+            <!-- Player Features-->
+            <div class="player-features">
+              <div class="player-features-col" style="padding-right: 0px;"><span>
+                  <div class="player-feature-value">{{player.pace}}</div>
+                  <div class="player-feature-title">{{'player.pace' | translate }}</div>
+                </span><span>
+                  <div class="player-feature-value">{{player.shooting}}</div>
+                  <div class="player-feature-title">{{'player.shooting' | translate}}</div>
+                </span><span>
+                  <div class="player-feature-value">{{player.passing}}</div>
+                  <div class="player-feature-title">{{'player.passing' | translate}}</div>
+                </span></div>
+              <div class="player-features-col"><span>
+                  <div class="player-feature-value">{{player.dribbling}}</div>
+                  <div class="player-feature-title">{{'player.dribbling' | translate}}</div>
+                </span><span>
+                  <div class="player-feature-value">{{player.defending}}</div>
+                  <div class="player-feature-title">{{'player.defending' | translate}}</div>
+                </span><span>
+                  <div class="player-feature-value">{{player.physical}}</div>
+                  <div class="player-feature-title">{{'player.physical' | translate}}</div>
+                </span></div>
+            </div>
+            <div class="player-status"><span>{{ player.status | translate }}</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-card>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="presentModal()">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

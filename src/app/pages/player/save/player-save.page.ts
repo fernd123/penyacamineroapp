@@ -18,6 +18,8 @@ export class PlayerSavePage implements OnInit {
 
   public playerForm: FormGroup;
   private title: string;
+  public segment: string = 'general';
+
 
   constructor(
     public modalController: ModalController,
@@ -48,7 +50,15 @@ export class PlayerSavePage implements OnInit {
       leg: [player != undefined ? player.leg : '', Validators.required],
       status: [player != undefined ? player.status : '', Validators.required],
       active: [player != undefined ? player.active : true, null],
-      profileImage: [player != undefined ? player.profileImage : '', null]
+      profileImage: [player != undefined ? player.profileImage : '', null],
+      //atributes
+      pace: [player != undefined ? player.pace : 0, null],
+      shooting: [player != undefined ? player.shooting : 0, null],
+      passing: [player != undefined ? player.passing : 0, null],
+      dribbling: [player != undefined ? player.dribbling : 0, null],
+      defending: [player != undefined ? player.defending : 0, null],
+      physical: [player != undefined ? player.physical : 0, null],
+      average: [player != undefined ? player.physical : 0, null]
     });
   }
 
@@ -79,6 +89,15 @@ export class PlayerSavePage implements OnInit {
   private createFromForm(): Player {
     let formValue: any = this.playerForm.value;
     formValue.creationDate = getDate();
+    let average: number = 0;
+    average += formValue.pace;
+    average += formValue.shooting;// != '' ? formValue.shooting : 0;
+    average += formValue.passing;// != '' ? formValue.passing : 0;
+    average += formValue.dribbling;// != '' ? formValue.dribbling : 0;
+    average += formValue.defending;// != '' ? formValue.defending : 0;
+    average += formValue.physical;// != '' ? formValue.physical : 0;
+    average = average / 6;
+    formValue.average = average;
     return formValue;
     /*let player: Player = new Player();
     player.id = formValue.id;

@@ -2,87 +2,200 @@
 
 <ion-content>
 
-  <ion-card>
-    <form [formGroup]="playerForm" (submit)="onSubmit()">
+  <ion-segment [(ngModel)]="segment">
+    <ion-segment-button value="general">
+      {{'player.general' | translate}}
+    </ion-segment-button>
+    <ion-segment-button value="attributes">
+      {{'player.attributes' | translate}}
+    </ion-segment-button>
+  </ion-segment>
 
-      <ion-item>
-        <ion-label class="formlabel">{{'player.firstname' | translate}}</ion-label>
-        <ion-input class="ion-text-right" type="text" formControlName="firstname"></ion-input>
-      </ion-item>
+  <form [formGroup]="playerForm" (submit)="onSubmit()">
+    <div [ngSwitch]="segment">
+      <div *ngSwitchCase="'general'">
+        <ion-card>
 
-      <ion-item>
-        <ion-label class="formlabel">{{'player.lastname' | translate}}</ion-label>
-        <ion-input class="ion-text-right" type="text" formControlName="lastname"></ion-input>
-      </ion-item>
+          <ion-item>
+            <ion-label class="formlabel">{{'player.firstname' | translate}}</ion-label>
+            <ion-input class="ion-text-right" type="text" formControlName="firstname"></ion-input>
+          </ion-item>
 
-      <ion-item>
-        <ion-label class="formlabel">{{'player.nickname' | translate}}</ion-label>
-        <ion-input class="ion-text-right" type="text" formControlName="nickname"></ion-input>
-      </ion-item>
+          <ion-item>
+            <ion-label class="formlabel">{{'player.lastname' | translate}}</ion-label>
+            <ion-input class="ion-text-right" type="text" formControlName="lastname"></ion-input>
+          </ion-item>
 
-      <ion-item>
-        <ion-label class="formlabel">{{'player.birthday' | translate}}</ion-label>
-        <ion-input class="ion-text-right" type="date" formControlName="birthday"></ion-input>
-      </ion-item>
+          <ion-item>
+            <ion-label class="formlabel">{{'player.nickname' | translate}}</ion-label>
+            <ion-input class="ion-text-right" type="text" formControlName="nickname"></ion-input>
+          </ion-item>
 
-      <ion-item>
-        <ion-label class="formlabel">{{'player.mainPosition' | translate}}</ion-label>
-        <ion-select formControlName="mainPosition" interface="action-sheet">
-          <ion-select-option value="position.goalkeeper">{{ 'position.goalkeeper' | translate}}</ion-select-option>
-          <ion-select-option value="position.defense">{{ 'position.defense' | translate}}</ion-select-option>
-          <ion-select-option value="position.midfilder">{{ 'position.midfilder' | translate}}</ion-select-option>
-          <ion-select-option value="position.forward">{{ 'position.forward' | translate}}</ion-select-option>
-        </ion-select>
-      </ion-item>
+          <ion-item>
+            <ion-label class="formlabel">{{'player.birthday' | translate}}</ion-label>
+            <ion-input class="ion-text-right" type="date" formControlName="birthday"></ion-input>
+          </ion-item>
 
-      <ion-item>
-        <ion-label class="formlabel">{{'player.secondPosition' | translate}}</ion-label>
-        <ion-select formControlName="secondPosition" interface="action-sheet">
-          <ion-select-option value="position.goalkeeper">{{ 'position.goalkeeper' | translate}}</ion-select-option>
-          <ion-select-option value="position.defense">{{ 'position.defense' | translate}}</ion-select-option>
-          <ion-select-option value="position.midfilder">{{ 'position.midfilder' | translate}}</ion-select-option>
-          <ion-select-option value="position.forward">{{ 'position.forward' | translate}}</ion-select-option>
-        </ion-select>
-      </ion-item>
+          <ion-item>
+            <ion-label class="formlabel">{{'player.mainPosition' | translate}}</ion-label>
+            <ion-select formControlName="mainPosition" interface="action-sheet">
+              <ion-select-option value="position.goalkeeper">{{ 'position.goalkeeper' | translate}}</ion-select-option>
+              <ion-select-option value="position.defense">{{ 'position.defense' | translate}}</ion-select-option>
+              <ion-select-option value="position.midfilder">{{ 'position.midfilder' | translate}}</ion-select-option>
+              <ion-select-option value="position.forward">{{ 'position.forward' | translate}}</ion-select-option>
+            </ion-select>
+          </ion-item>
 
-      <ion-item>
-        <ion-label class="formlabel">{{'player.leg' | translate}}</ion-label>
-        <ion-select formControlName="leg" interface="action-sheet">
-          <ion-select-option value="leg.right">{{ 'leg.right' | translate}}</ion-select-option>
-          <ion-select-option value="leg.left">{{ 'leg.left' | translate}}</ion-select-option>
-          <ion-select-option value="leg.noLeg">{{ 'leg.noLeg' | translate}}</ion-select-option>
-        </ion-select>
-      </ion-item>
+          <ion-item>
+            <ion-label class="formlabel">{{'player.secondPosition' | translate}}</ion-label>
+            <ion-select formControlName="secondPosition" interface="action-sheet">
+              <ion-select-option value="position.goalkeeper">{{ 'position.goalkeeper' | translate}}</ion-select-option>
+              <ion-select-option value="position.defense">{{ 'position.defense' | translate}}</ion-select-option>
+              <ion-select-option value="position.midfilder">{{ 'position.midfilder' | translate}}</ion-select-option>
+              <ion-select-option value="position.forward">{{ 'position.forward' | translate}}</ion-select-option>
+            </ion-select>
+          </ion-item>
 
-      <ion-item>
-        <ion-label class="formlabel">{{'player.status' | translate}}</ion-label>
-        <ion-select formControlName="status" interface="action-sheet">
-          <ion-select-option value="status.legend">{{ 'status.legend' | translate}}</ion-select-option>
-          <ion-select-option value="status.star">{{ 'status.star' | translate}}</ion-select-option>
-          <ion-select-option value="status.promise">{{ 'status.promise' | translate}}</ion-select-option>
-          <ion-select-option value="status.noob">{{ 'status.noob' | translate}}</ion-select-option>
-        </ion-select>
-      </ion-item>
+          <ion-item>
+            <ion-label class="formlabel">{{'player.leg' | translate}}</ion-label>
+            <ion-select formControlName="leg" interface="action-sheet">
+              <ion-select-option value="leg.right">{{ 'leg.right' | translate}}</ion-select-option>
+              <ion-select-option value="leg.left">{{ 'leg.left' | translate}}</ion-select-option>
+              <ion-select-option value="leg.noLeg">{{ 'leg.noLeg' | translate}}</ion-select-option>
+            </ion-select>
+          </ion-item>
 
-      <ion-item>
-        <ion-label class="formlabel">{{'player.active' | translate}}</ion-label>
-        <ion-checkbox color="dark" formControlName="active"></ion-checkbox>
-      </ion-item>
+          <ion-item>
+            <ion-label class="formlabel">{{'player.status' | translate}}</ion-label>
+            <ion-select formControlName="status" interface="action-sheet">
+              <ion-select-option value="status.legend">{{ 'status.legend' | translate}}</ion-select-option>
+              <ion-select-option value="status.star">{{ 'status.star' | translate}}</ion-select-option>
+              <ion-select-option value="status.promise">{{ 'status.promise' | translate}}</ion-select-option>
+              <ion-select-option value="status.noob">{{ 'status.noob' | translate}}</ion-select-option>
+            </ion-select>
+          </ion-item>
 
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <ion-button expand="block" color="warning" type="button" (click)="close()">{{'close' | translate}}
-            </ion-button>
-          </ion-col>
-          <ion-col>
-            <ion-button expand="block" color="success" type="submit" [disabled]="!playerForm.valid">
-              {{'save' | translate}}
-            </ion-button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+          <ion-item>
+            <ion-label class="formlabel">{{'player.active' | translate}}</ion-label>
+            <ion-checkbox color="dark" formControlName="active"></ion-checkbox>
+          </ion-item>
 
-    </form>
-  </ion-card>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-button expand="block" color="warning" type="button" (click)="close()">{{'close' | translate}}
+                </ion-button>
+              </ion-col>
+              <ion-col>
+                <ion-button expand="block" color="success" type="submit" [disabled]="!playerForm.valid">
+                  {{'save' | translate}}
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+
+        </ion-card>
+      </div>
+    </div>
+
+    <div [ngSwitch]="segment">
+      <div *ngSwitchCase="'attributes'">
+        <ion-card>
+
+          <ion-item>
+            <ion-label class="formlabel">{{'player.pace' | translate}}: {{playerForm.value.pace}}</ion-label>
+            <ion-range min="0" max="100" step="1" formControlName="pace" pin="true">
+              <ion-icon size="small" slot="start" name="remove"></ion-icon>
+              <ion-icon slot="end" name="add"></ion-icon>
+            </ion-range>
+          </ion-item>
+
+          <ion-item>
+            <ion-label class="formlabel">{{'player.shooting' | translate}}: {{playerForm.value.shooting}}</ion-label>
+            <ion-range min="0" max="100" step="1" formControlName="shooting" pin="true">
+              <ion-icon size="small" slot="start" name="remove"></ion-icon>
+              <ion-icon slot="end" name="add"></ion-icon>
+            </ion-range>
+          </ion-item>
+
+          <ion-item>
+            <ion-label class="formlabel">{{'player.passing' | translate}}: {{playerForm.value.passing}}</ion-label>
+            <ion-range min="0" max="100" step="1" formControlName="passing" pin="true">
+              <ion-icon size="small" slot="start" name="remove"></ion-icon>
+              <ion-icon slot="end" name="add"></ion-icon>
+            </ion-range>
+          </ion-item>
+
+          <ion-item>
+            <ion-label class="formlabel">{{'player.dribbling' | translate}}: {{playerForm.value.dribbling}}</ion-label>
+            <ion-range min="0" max="100" step="1" formControlName="dribbling" pin="true">
+              <ion-icon size="small" slot="start" name="remove"></ion-icon>
+              <ion-icon slot="end" name="add"></ion-icon>
+            </ion-range>
+          </ion-item>
+
+          <ion-item>
+            <ion-label class="formlabel">{{'player.defending' | translate}}: {{playerForm.value.defending}}</ion-label>
+            <ion-range min="0" max="100" step="1" formControlName="defending" pin="true">
+              <ion-icon size="small" slot="start" name="remove"></ion-icon>
+              <ion-icon slot="end" name="add"></ion-icon>
+            </ion-range>
+          </ion-item>
+
+          <ion-item>
+            <ion-label class="formlabel">{{'player.physical' | translate}}: {{playerForm.value.physical}}</ion-label>
+            <ion-range min="0" max="100" step="1" formControlName="physical" pin="true">
+              <ion-icon size="small" slot="start" name="remove"></ion-icon>
+              <ion-icon slot="end" name="add"></ion-icon>
+            </ion-range>
+          </ion-item>
+
+          <!--
+          <ion-item>
+            <ion-label class="formlabel">{{'player.pace' | translate}}</ion-label>
+            <ion-input class="ion-text-right" type="number" formControlName="pace"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label class="formlabel">{{'player.shooting' | translate}}</ion-label>
+            <ion-input class="ion-text-right" type="number" formControlName="shooting"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label class="formlabel">{{'player.passing' | translate}}</ion-label>
+            <ion-input class="ion-text-right" type="number" formControlName="passing"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label class="formlabel">{{'player.dribbling' | translate}}</ion-label>
+            <ion-input class="ion-text-right" type="number" formControlName="dribbling"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label class="formlabel">{{'player.defending' | translate}}</ion-label>
+            <ion-input class="ion-text-right" type="number" formControlName="defending"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label class="formlabel">{{'player.physical' | translate}}</ion-label>
+            <ion-input class="ion-text-right" type="number" formControlName="physical"></ion-input>
+          </ion-item> -->
+
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-button expand="block" color="warning" type="button" (click)="close()">{{'close' | translate}}
+                </ion-button>
+              </ion-col>
+              <ion-col>
+                <ion-button expand="block" color="success" type="submit" [disabled]="!playerForm.valid">
+                  {{'save' | translate}}
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+      </div>
+    </div>
+  </form>
 </ion-content>

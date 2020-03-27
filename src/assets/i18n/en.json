@@ -52,7 +52,16 @@
         "active": "Active",
         "status": "Status",
         "saveSuccess": "Player saved",
-        "updateSuccess": "Player updated"
+        "updateSuccess": "Player updated",
+        "general": "General",
+        "attributes": "Attributes",
+        "pace": "Pace",
+        "shooting": "Shooting",
+        "passing": "Passing",
+        "dribbling": "Dribbling",
+        "defending": "Defending",
+        "physical": "Physical",
+        "average": "Average"
     },
     "match": {
         "typeF": {

@@ -32,25 +32,23 @@ export class HomePage {
 
   async showProfile() {
     const modal = await this.modalController.create({
+      cssClass: "my-modal",
       component: PlayerSavePage,
       componentProps: {
         'currentPlayer': new Player(),
         'myProfile': true
       }
     });
-    this.playerService.getPlayerById(localStorage.getItem('playerId')).then(function (doc) {
+    this.playerService.getPlayerById(localStorage.getItem('playerId')).then(async function (doc) {
       if (doc.exists) {
         modal.componentProps.currentPlayer = doc.data();
-        modal.present();
+        return await modal.present();
       } else {
         console.log("No such document!");
       }
     }).catch(function (error) {
       console.log("Error getting document:", error);
     });
-
-
-
 
   }
 

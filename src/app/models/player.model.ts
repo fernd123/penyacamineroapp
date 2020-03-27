@@ -13,4 +13,12 @@ export class Player extends Parent {
     leg: string;
     status: string;
     user: User;
+
+    pace: Number; // ritmo
+    shooting: Number;
+    passing: Number;
+    dribbling: Number;
+    defending: Number;
+    physical: Number;
+    average: Number;
 }

@@ -48,6 +48,7 @@ export class MatchPage implements OnInit {
       card.el.style.background = '#00a0406b';
     }
     const modal = await this.modalController.create({
+      cssClass: "my-modal",
       component: MatchSavePage,
       componentProps: {
         'currentMatch': match

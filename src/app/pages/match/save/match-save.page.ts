@@ -85,7 +85,6 @@ export class MatchSavePage implements OnInit {
   }
 
   onSubmit() {
-    debugger;
     let match: Match = this.createFromForm();
     if (this.currentMatch == undefined) {
       this.matchService.addMatch(match).then(async res => {
@@ -233,7 +232,6 @@ export class MatchSavePage implements OnInit {
 
   async saveStatistics() {
     let updateMatch = this.setStatistics();
-    debugger;
     if (updateMatch) {
       this.matchService.updateMatch(this.currentMatch.id, this.currentMatch).then(async res => {
         this.showPlayerStatistic = !this.showPlayerStatistic;

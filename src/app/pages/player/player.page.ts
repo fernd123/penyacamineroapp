@@ -33,6 +33,7 @@ export class PlayerPage implements OnInit {
         card.el.style.background = '#00a0406b';
       }
       const modal = await this.modalController.create({
+        cssClass: "my-modal",
         component: PlayerSavePage,
         componentProps: {
           'currentPlayer': player
@@ -46,4 +47,14 @@ export class PlayerPage implements OnInit {
     this.playerService.deletePlayer(id);
   }
 
+  getPlayerPosition(player: Player) {
+    switch (player.mainPosition) {
+      case 'position.defense':
+        return "DF";
+      case 'position.midfilder':
+        return "MC";
+      case 'position.forward':
+        return "FW";
+    }
+  }
 }

@@ -52,7 +52,16 @@
         "active": "En activo",
         "status": "Status",
         "saveSuccess": "Jugador guardado",
-        "updateSuccess": "Jugador actualizado"
+        "updateSuccess": "Jugador actualizado",
+        "general": "General",
+        "attributes": "Atributos",
+        "pace": "Ritmo",
+        "shooting": "Disparo",
+        "passing": "Pase",
+        "dribbling": "Dribbling",
+        "defending": "Defensa",
+        "physical": "Físico",
+        "average": "Media"
     },
     "match": {
         "typeF": {
