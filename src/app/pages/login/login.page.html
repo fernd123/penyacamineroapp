@@ -1,14 +1,15 @@
-<ion-content [fullscreen]="true">
+<ion-content>
 
   <div id="container">
 
     <ion-card>
-      <p><a>
+      <!--<p><a>
           {{'app.title' | translate}}
-        </a></p>
+        </a></p>-->
 
-      <img src="assets/images/penya_caminero_escudo.jpg" height="125" width="150" class="center">
-      <form [formGroup]="userForm" (submit)="onSubmit()">
+      <img src="assets/images/penya_caminero_escudo.jpg" height="125" width="150" class="center"
+        style="margin-top: 10px;">
+      <form [formGroup]=" userForm" (submit)="onSubmit()">
         <ion-grid>
           <ion-row color="primary" justify-content-center>
             <ion-col align-self-center size-md="12" size-lg="12" size-xs="12">

@@ -1,92 +1,95 @@
 <ion-content>
-  <p><a>
+  <!--<p><a>
       {{'app.title' | translate}}
-    </a></p>
+    </a></p>-->
+  <ion-card>
 
-  <form [formGroup]=" userForm" (submit)="onSubmit()">
-    <ion-grid>
-      <ion-row color="primary" justify-content-center>
-        <ion-col align-self-center size-md="12" size-lg="12" size-xs="12">
-          <div text-center>
-            <h3>{{ 'register.title' | translate }}</h3>
-          </div>
-          <div padding>
-            <ion-item>
-              <ion-label class="formlabel">{{'player.firstname' | translate}}</ion-label>
-              <ion-input class="ion-text-right" type="text" formControlName="firstname"
-                placeholder="{{'player.firstname' | translate }}">
-              </ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label class="formlabel">{{'player.lastname' | translate}}</ion-label>
-              <ion-input class="ion-text-right" type="text" formControlName="lastname"
-                placeholder="{{'player.lastname' | translate }}">
-              </ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label class="formlabel">{{'player.birthday' | translate}}</ion-label>
-              <ion-input class="ion-text-right" type="date" formControlName="birthday"
-                placeholder="{{'player.birthday' | translate }}">
-              </ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label class="formlabel">{{'player.mainPosition' | translate}}</ion-label>
-              <ion-select class="ion-text-right" formControlName="mainPosition"
-                placeholder="{{'player.mainPosition' | translate}}" interface="action-sheet">
-                <ion-select-option value="position.goalkeeper">{{ 'position.goalkeeper' | translate}}
-                </ion-select-option>
-                <ion-select-option value="position.defense">{{ 'position.defense' | translate}}</ion-select-option>
-                <ion-select-option value="position.midfilder">{{ 'position.midfilder' | translate}}</ion-select-option>
-                <ion-select-option value="position.forward">{{ 'position.forward' | translate}}</ion-select-option>
-              </ion-select>
-            </ion-item>
-
-            <ion-item>
-              <ion-label class="formlabel">{{'player.leg' | translate}}</ion-label>
-              <ion-select class="ion-text-right" formControlName="leg" interface="action-sheet"
-                placeholder="{{'player.leg' | translate}}">
-                <ion-select-option value="leg.right">{{ 'leg.right' | translate}}</ion-select-option>
-                <ion-select-option value="leg.left">{{ 'leg.left' | translate}}</ion-select-option>
-                <ion-select-option value="leg.noLeg">{{ 'leg.noLeg' | translate}}</ion-select-option>
-              </ion-select>
-            </ion-item>
-
-            <ion-item>
-              <ion-label class="formlabel">{{'email' | translate}}</ion-label>
-              <ion-input class="ion-text-right" name="email" type="text" formControlName="email"
-                placeholder="{{'email' | translate }}@mail.com">
-              </ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label class="formlabel">{{'password' | translate}}</ion-label>
-              <ion-input class="ion-text-right" name="password" type="password" formControlName="password"
-                placeholder="{{'password' | translate }}">
-              </ion-input>
-            </ion-item>
-          </div>
-          <div padding *ngIf="errorMessage != null" class="loginError">
+    <form [formGroup]=" userForm" (submit)="onSubmit()">
+      <ion-grid>
+        <ion-row color="primary" justify-content-center>
+          <ion-col align-self-center size-md="12" size-lg="12" size-xs="12">
             <div text-center>
-              {{ errorMessage | translate }}
+              <h3>{{ 'register.title' | translate }}</h3>
             </div>
-          </div>
+            <div padding>
+              <ion-item>
+                <ion-label class="formlabel">{{'player.firstname' | translate}}</ion-label>
+                <ion-input class="ion-text-right" type="text" formControlName="firstname"
+                  placeholder="{{'player.firstname' | translate }}">
+                </ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label class="formlabel">{{'player.lastname' | translate}}</ion-label>
+                <ion-input class="ion-text-right" type="text" formControlName="lastname"
+                  placeholder="{{'player.lastname' | translate }}">
+                </ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label class="formlabel">{{'player.birthday' | translate}}</ion-label>
+                <ion-input class="ion-text-right" type="date" formControlName="birthday"
+                  placeholder="{{'player.birthday' | translate }}">
+                </ion-input>
+              </ion-item>
 
-          <ion-row>
-            <ion-col>
-              <ion-button class="menuButton" type="submit" [disabled]="userForm.invalid" expand="block">
-                {{'register.submit' | translate}}
-              </ion-button>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>
-              <ion-button class="menuButtonCancel" [routerLink]="['/login']" expand="block">
-                {{'register.back' | translate}}
-              </ion-button>
-            </ion-col>
-          </ion-row>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </form>
+              <ion-item>
+                <ion-label class="formlabel">{{'player.mainPosition' | translate}}</ion-label>
+                <ion-select class="ion-text-right" formControlName="mainPosition"
+                  placeholder="{{'player.mainPosition' | translate}}" interface="action-sheet">
+                  <ion-select-option value="position.goalkeeper">{{ 'position.goalkeeper' | translate}}
+                  </ion-select-option>
+                  <ion-select-option value="position.defense">{{ 'position.defense' | translate}}</ion-select-option>
+                  <ion-select-option value="position.midfilder">{{ 'position.midfilder' | translate}}
+                  </ion-select-option>
+                  <ion-select-option value="position.forward">{{ 'position.forward' | translate}}</ion-select-option>
+                </ion-select>
+              </ion-item>
+
+              <ion-item>
+                <ion-label class="formlabel">{{'player.leg' | translate}}</ion-label>
+                <ion-select class="ion-text-right" formControlName="leg" interface="action-sheet"
+                  placeholder="{{'player.leg' | translate}}">
+                  <ion-select-option value="leg.right">{{ 'leg.right' | translate}}</ion-select-option>
+                  <ion-select-option value="leg.left">{{ 'leg.left' | translate}}</ion-select-option>
+                  <ion-select-option value="leg.noLeg">{{ 'leg.noLeg' | translate}}</ion-select-option>
+                </ion-select>
+              </ion-item>
+
+              <ion-item>
+                <ion-label class="formlabel">{{'email' | translate}}</ion-label>
+                <ion-input class="ion-text-right" name="email" type="text" formControlName="email"
+                  placeholder="{{'email' | translate }}@mail.com">
+                </ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label class="formlabel">{{'password' | translate}}</ion-label>
+                <ion-input class="ion-text-right" name="password" type="password" formControlName="password"
+                  placeholder="{{'password' | translate }}">
+                </ion-input>
+              </ion-item>
+            </div>
+            <div padding *ngIf="errorMessage != null" class="loginError">
+              <div text-center>
+                {{ errorMessage | translate }}
+              </div>
+            </div>
+
+            <ion-row>
+              <ion-col>
+                <ion-button class="menuButton" type="submit" [disabled]="userForm.invalid" expand="block">
+                  {{'register.submit' | translate}}
+                </ion-button>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-button class="menuButtonCancel" [routerLink]="['/login']" expand="block">
+                  {{'register.back' | translate}}
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+  </ion-card>
 </ion-content>

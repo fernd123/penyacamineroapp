@@ -76,6 +76,29 @@
           </ion-item>
 
           <ion-item>
+            <ion-label class="formlabel">{{'player.profileImage' | translate}}</ion-label>
+            <ion-row>
+              <ion-col>
+                <!--<ion-input class="ion-text-left" type="file" formControlName="profileImage"
+                  (change)="cambioArchivo($event)"> 
+                </ion-input>-->
+                <input type="file" name="file" id="file" class="inputfile" (change)="changeFile($event)" />
+                <label for="file">{{'changeFile' | translate}}</label>
+              </ion-col>
+              <ion-col>
+                <ion-button color="primary" (click)="showProfileImage()">{{'showImage' | translate}}</ion-button>
+              </ion-col>
+            </ion-row>
+
+            <!--<input class="file-input" type="file" formControlName="profileImage" (change)="cambioArchivo($event)">
+            <span class="file-cta">
+              <span class="file-label">
+                Elegir un archivo…
+              </span>
+            </span>-->
+          </ion-item>
+
+          <ion-item>
             <ion-label class="formlabel">{{'player.active' | translate}}</ion-label>
             <ion-checkbox color="dark" formControlName="active"></ion-checkbox>
           </ion-item>
@@ -103,48 +126,52 @@
         <ion-card>
 
           <ion-item>
-            <ion-label class="formlabel">{{'player.pace' | translate}}: {{playerForm.value.pace}}</ion-label>
-            <ion-range min="0" max="100" step="1" formControlName="pace" pin="true">
+            <ion-label class="formlabel">{{'player.pace' | translate}}:<br> {{playerForm.value.pace}}</ion-label>
+            <ion-range min="0" max="99" step="1" formControlName="pace" pin="true">
               <ion-icon size="small" slot="start" name="remove"></ion-icon>
               <ion-icon slot="end" name="add"></ion-icon>
             </ion-range>
           </ion-item>
 
           <ion-item>
-            <ion-label class="formlabel">{{'player.shooting' | translate}}: {{playerForm.value.shooting}}</ion-label>
-            <ion-range min="0" max="100" step="1" formControlName="shooting" pin="true">
+            <ion-label class="formlabel">{{'player.shooting' | translate}}:<br> {{playerForm.value.shooting}}
+            </ion-label>
+            <ion-range min="0" max="99" step="1" formControlName="shooting" pin="true">
               <ion-icon size="small" slot="start" name="remove"></ion-icon>
               <ion-icon slot="end" name="add"></ion-icon>
             </ion-range>
           </ion-item>
 
           <ion-item>
-            <ion-label class="formlabel">{{'player.passing' | translate}}: {{playerForm.value.passing}}</ion-label>
-            <ion-range min="0" max="100" step="1" formControlName="passing" pin="true">
+            <ion-label class="formlabel">{{'player.passing' | translate}}:<br> {{playerForm.value.passing}}</ion-label>
+            <ion-range min="0" max="99" step="1" formControlName="passing" pin="true">
               <ion-icon size="small" slot="start" name="remove"></ion-icon>
               <ion-icon slot="end" name="add"></ion-icon>
             </ion-range>
           </ion-item>
 
           <ion-item>
-            <ion-label class="formlabel">{{'player.dribbling' | translate}}: {{playerForm.value.dribbling}}</ion-label>
-            <ion-range min="0" max="100" step="1" formControlName="dribbling" pin="true">
+            <ion-label class="formlabel">{{'player.dribbling' | translate}}:<br> {{playerForm.value.dribbling}}
+            </ion-label>
+            <ion-range min="0" max="99" step="1" formControlName="dribbling" pin="true">
               <ion-icon size="small" slot="start" name="remove"></ion-icon>
               <ion-icon slot="end" name="add"></ion-icon>
             </ion-range>
           </ion-item>
 
           <ion-item>
-            <ion-label class="formlabel">{{'player.defending' | translate}}: {{playerForm.value.defending}}</ion-label>
-            <ion-range min="0" max="100" step="1" formControlName="defending" pin="true">
+            <ion-label class="formlabel">{{'player.defending' | translate}}:<br> {{playerForm.value.defending}}
+            </ion-label>
+            <ion-range min="0" max="99" step="1" formControlName="defending" pin="true">
               <ion-icon size="small" slot="start" name="remove"></ion-icon>
               <ion-icon slot="end" name="add"></ion-icon>
             </ion-range>
           </ion-item>
 
           <ion-item>
-            <ion-label class="formlabel">{{'player.physical' | translate}}: {{playerForm.value.physical}}</ion-label>
-            <ion-range min="0" max="100" step="1" formControlName="physical" pin="true">
+            <ion-label class="formlabel">{{'player.physical' | translate}}:<br> {{playerForm.value.physical}}
+            </ion-label>
+            <ion-range min="0" max="99" step="1" formControlName="physical" pin="true">
               <ion-icon size="small" slot="start" name="remove"></ion-icon>
               <ion-icon slot="end" name="add"></ion-icon>
             </ion-range>

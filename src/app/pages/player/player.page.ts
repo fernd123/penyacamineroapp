@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, LoadingController } from '@ionic/angular';
 import { PlayerSavePage } from './save/player-save.page';
 import { Player } from 'src/app/models/player.model';
 import { PlayerService } from 'src/app/services/player.service';
 import { Observable } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-player',
@@ -15,13 +16,24 @@ export class PlayerPage implements OnInit {
   private title: string = 'players';
   private selectedCard: any;
   public playerList: Observable<Player[]>;
+
   constructor(
     public modalController: ModalController,
-    private playerService: PlayerService
+    private playerService: PlayerService,
+    private loadingCtrl: LoadingController,
+    private translateService: TranslateService
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    let loading = await this.loadingCtrl.create({
+      message: this.translateService.instant('loading')
+    });
+    loading.present();
     this.playerList = this.playerService.getPlayers();
+    loading.dismiss();
+  }
+
+  ngAfterContentInit() {
   }
 
   async presentModal(player: Player, card: any) {
@@ -55,6 +67,14 @@ export class PlayerPage implements OnInit {
         return "MC";
       case 'position.forward':
         return "FW";
+    }
+  }
+
+  getProfileImage(player: Player, index: number) {
+    if (player.profileImage != undefined) {
+      return player.profileImage;
+    } else {
+      return "assets/images/ob/ob" + (index + 1) + ".jpg";
     }
   }
 }

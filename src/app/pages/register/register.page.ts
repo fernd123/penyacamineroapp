@@ -78,7 +78,8 @@ export class RegisterPage implements OnInit {
             console.log("Successfully registered!");
             const toast = await this.toastController.create({
               message: this.translateService.instant('register.saveSuccess'),
-              duration: 2000
+              duration: 2000,
+              color: 'success'
             });
             loading.dismiss();
             toast.present();

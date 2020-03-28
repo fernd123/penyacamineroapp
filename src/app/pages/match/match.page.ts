@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Match } from 'src/app/models/match.model';
 import { Observable } from 'rxjs';
 import { MatchService } from 'src/app/services/match.service';
-import { ModalController } from '@ionic/angular';
+import { ModalController, LoadingController } from '@ionic/angular';
 import { MatchSavePage } from './save/match-save.page';
 import { TranslateService } from '@ngx-translate/core';
 import { map } from 'rxjs/operators';
@@ -20,20 +20,26 @@ export class MatchPage implements OnInit {
   public matchList: Observable<Match[]>;
   public matchHistoricList: Observable<Match[]>;
   private selectedCard = undefined;
-
+  private loading: any = null;
 
   constructor(public modalController: ModalController,
     private matchService: MatchService,
     private matchStatisticService: MatchStatisticsService,
+    private loadingCtrl: LoadingController,
     public translateService: TranslateService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.loading = await this.loadingCtrl.create({
+      message: this.translateService.instant('loading')
+    });
+    this.loading.present();
     // Next match = active true
     this.matchList = this.matchService.getMatches().pipe(
       map(matches => matches.filter(match => match.active === false)));
     // Historical match = active false
     this.matchHistoricList = this.matchService.getMatches().pipe(
       map(matches => matches.filter(match => match.active === true)));
+    this.loading.dismiss();
   }
 
   showIfUserIsAdmin() {

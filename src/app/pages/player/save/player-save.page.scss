@@ -1,3 +1,45 @@
 .formlabel{
   font-weight: bold !important;
 }
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+  z-index: -1;
+  display: flex;
+  
+}
+
+.inputfile + label {
+  font-size: 1.0rem;
+  font-weight: 700;
+  font-family:400 13.3333px Arial;
+  color: white;
+  background-color: #8a9713;
+  display: inline-block;
+  text-align: center;
+  padding: 5px;
+  margin-top: 4px;
+  border-bottom-width: 3px;
+  margin-bottom: 3px;
+  border-radius: 5px;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+  cursor: pointer;
+}
+
+element.style {
+  padding-top: 5px;
+  margin-top: 4px;
+  padding-bottom: 5px;
+  border-bottom-width: 3px;
+  margin-bottom: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 5px;
+}

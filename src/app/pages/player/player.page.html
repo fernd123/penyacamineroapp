@@ -35,7 +35,7 @@
             <div class="player-position"><span>{{getPlayerPosition(player)}}</span></div>
             <div class="player-nation"><img src="assets/images/spain.png" alt="España" draggable="false" /></div>
           </div>
-          <div class="player-picture"><img src="assets/images/ob/ob{{i+1}}.jpg" alt="PlayerImg" draggable="false" />
+          <div class="player-picture"><img src="{{getProfileImage(player, i)}}" alt="PlayerImg" draggable="false" />
             <div class="player-extra"><span>{{ player.mainPosition | translate }}
                 {{player.secondPosition | translate}}</span></div>
           </div>

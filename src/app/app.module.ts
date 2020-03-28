@@ -11,10 +11,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
+import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 
 /* FIREBASE */
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from 'angularfire2/auth'
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 /* TRANSLATE */
 import { TranslateLoader, TranslateModule, TranslatePipe } from '@ngx-translate/core';
@@ -30,6 +32,7 @@ import { MatchStatisticsService } from './services/match-statistics.service';
 // importar locales
 import localeEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
+import { FirebaseStorageService } from './services/firebase-storage.service';
 
 // registrar los locales con el nombre que quieras utilizar a la hora de proveer
 registerLocaleData(localeEs, 'es');
@@ -62,6 +65,7 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,
+    AngularFireStorageModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -73,10 +77,11 @@ export const firebaseConfig = {
   providers: [
     StatusBar,
     SplashScreen,
+    PhotoViewer,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: LOCALE_ID, useValue: 'es' },
     AuthGuard,
-    PlayerService, MatchService, MatchStatisticsService, UserService
+    PlayerService, MatchService, MatchStatisticsService, UserService, FirebaseStorageService
   ],
   bootstrap: [AppComponent,
   ]

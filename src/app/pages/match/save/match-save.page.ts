@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ModalController, ToastController } from '@ionic/angular';
+import { ModalController, ToastController, LoadingController } from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Match } from 'src/app/models/match.model';
 import { MatchService } from 'src/app/services/match.service';
@@ -26,6 +26,7 @@ export class MatchSavePage implements OnInit {
   public showPlayerStatistic: boolean = false;
   private title: string;
   public playerList: Observable<Player[]>;
+  private loading: any = null;
 
   constructor(
     public modalController: ModalController,
@@ -34,7 +35,8 @@ export class MatchSavePage implements OnInit {
     private translateService: TranslateService,
     private matchService: MatchService,
     private playerService: PlayerService,
-    private matchStatisticsService: MatchStatisticsService
+    private matchStatisticsService: MatchStatisticsService,
+    private loadingCtrl: LoadingController
   ) {
   }
 
@@ -44,6 +46,13 @@ export class MatchSavePage implements OnInit {
     this.title = this.currentMatch == undefined ? 'match.newMatch' : 'match.editMatch';
     this.matchForm = this.buildFormGroup();
     this.statisticForm = this.buildFormGroupStatistics();
+    this.getLoading();
+  }
+
+  private async getLoading() {
+    this.loading = await this.loadingCtrl.create({
+      message: this.translateService.instant('saving')
+    });
   }
 
   protected buildFormGroup(): FormGroup {
@@ -85,6 +94,7 @@ export class MatchSavePage implements OnInit {
   }
 
   onSubmit() {
+    this.loading.present();
     let match: Match = this.createFromForm();
     if (this.currentMatch == undefined) {
       this.matchService.addMatch(match).then(async res => {
@@ -93,6 +103,7 @@ export class MatchSavePage implements OnInit {
           duration: 2000,
           color: 'success'
         });
+        this.loading.dismiss();
         toast.present();
         this.close();
       }, error => { console.log(error) });
@@ -103,6 +114,7 @@ export class MatchSavePage implements OnInit {
           duration: 2000,
           color: 'success'
         });
+        this.loading.dismiss();
         toast.present();
         this.close();
       }, error => { console.log(error) });
@@ -290,7 +302,8 @@ export class MatchSavePage implements OnInit {
     if (isPlayerInConvocation) {
       const toast = await this.toastController.create({
         message: this.translateService.instant('match.convocationPlayerError'),
-        duration: 2000
+        duration: 2000,
+        color: 'danger'
       });
       toast.present();
       $event.target.value = null;
@@ -301,7 +314,8 @@ export class MatchSavePage implements OnInit {
     this.matchService.updateMatch(this.currentMatch.id, this.currentMatch).then(async res => {
       const toast = await this.toastController.create({
         message: this.translateService.instant('match.convocationSuccess'),
-        duration: 2000
+        duration: 2000,
+        color: 'success'
       });
       toast.present();
       $event.target.value = null;

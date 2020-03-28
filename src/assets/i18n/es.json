@@ -15,10 +15,13 @@
     "cancel": "Cancelar",
     "close": "Cerrar",
     "loading": "Cargando datos",
+    "saving": "Guardando datos",
     "statistics": "Estadísticas",
     "password": "Contraseña",
     "email": "Email",
     "myprofile": "Mi Perfil",
+    "changeFile": "Cambiar",
+    "showImage": "Ver",
     "register": {
         "title": "Crea tu cuenta",
         "submit": "Registrarme",

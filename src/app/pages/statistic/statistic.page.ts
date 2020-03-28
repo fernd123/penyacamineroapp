@@ -4,6 +4,8 @@ import { MatchService } from 'src/app/services/match.service';
 import { Match } from 'src/app/models/match.model';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { LoadingController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-statistic',
@@ -26,12 +28,21 @@ export class StatisticPage implements OnInit {
   constructor(
     private playerService: PlayerService,
     private matchService: MatchService,
-    private router: Router
+    private router: Router,
+    private loadingCtrl: LoadingController,
+    private translateService: TranslateService
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    let loading = await this.loadingCtrl.create({
+      message: this.translateService.instant('loading')
+    });
+    loading.present();
     this.matchService.getMatches().subscribe(res => {
       this.getStatistics(res);
+      loading.dismiss();
+    }, error => {
+      loading.dismiss();
     });
   }
 
