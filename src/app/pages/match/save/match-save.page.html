@@ -127,7 +127,7 @@
           [ngClass]="{'ionitemdisabled' : !showIfUserIsAdmin() && !checkIfPlayerIsCurrentPlayer(statistic.playerId)}"
           *ngFor="let statistic of (currentMatch?.statistics); let i = index;">
           <!--(click)="showStatistics(statistic, i)"-->
-          <ion-button color="danger" (click)="signOutConvocation(statistic.id)"
+          <ion-button color="danger" (click)="signOutConvocation(statistic, i)"
             *ngIf="(showIfUserIsAdmin()) || (currentMatch.active == false && checkIfPlayerIsCurrentPlayer(statistic.playerId))">
             <ion-icon name="trash"></ion-icon>
           </ion-button>

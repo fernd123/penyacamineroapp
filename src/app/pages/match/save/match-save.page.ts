@@ -27,6 +27,7 @@ export class MatchSavePage implements OnInit {
   private title: string;
   public playerList: Observable<Player[]>;
   private loading: any = null;
+  private currentPlayerId: string = "";
 
   constructor(
     public modalController: ModalController,
@@ -42,6 +43,8 @@ export class MatchSavePage implements OnInit {
 
   ngOnInit() {
     this.currentPlayer = JSON.parse(localStorage.getItem('currentPlayer'));
+    this.currentPlayerId = localStorage.getItem('playerId');
+
     this.playerList = this.playerService.getPlayers();
     this.title = this.currentMatch == undefined ? 'match.newMatch' : 'match.editMatch';
     this.matchForm = this.buildFormGroup();
@@ -79,7 +82,7 @@ export class MatchSavePage implements OnInit {
     let assists = null;
 
     this.currentMatch.statistics.forEach(s => {
-      if (s.playerId == this.currentPlayer.id) {
+      if (s.playerId == this.currentPlayerId) {
         goals = s.goals;
         assists = s.assists;
         return;
@@ -179,12 +182,11 @@ export class MatchSavePage implements OnInit {
     return isUserAdmin;
   }
 
-  async signOutConvocation(playerId: string, index: number) {
+  async signOutConvocation(statistic: any) {
     let statisticIdxRemove: number = 0;
-
     // Delete statistics
     for (let i = 0; i < this.currentMatch.statistics.length; i++) {
-      if (this.currentMatch.statistics[i].id == playerId) {
+      if (this.currentMatch.statistics[i].playerId == statistic.playerId) {
         statisticIdxRemove = i;
       }
     }
@@ -197,7 +199,7 @@ export class MatchSavePage implements OnInit {
       this.matchStatisticsService.getStatisticsByMatch(this.currentMatch.id).then(async snapshot => {
         if (!snapshot.empty) {
           snapshot.forEach(doc => {
-            if (doc.data().playerId == playerId) {
+            if (doc.data().playerId == statistic.playerId) {
               this.matchStatisticsService.deleteMatchStatistic(doc.id);
             }
           });
@@ -272,7 +274,7 @@ export class MatchSavePage implements OnInit {
       return false;
     }
     this.currentMatch.statistics.forEach(s => {
-      if (s.playerId == this.currentPlayer.id) {
+      if (s.playerId == this.currentPlayerId) {
         statistics = s;
         return false;
       }
