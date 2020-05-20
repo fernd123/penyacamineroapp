@@ -24,7 +24,7 @@ export class MatchSavePage implements OnInit {
   public statisticForm: FormGroup;
   public segment: string = 'info';
   public showPlayerStatistic: boolean = false;
-  private title: string;
+  public title: string;
   public playerList: Observable<Player[]>;
   private loading: any = null;
   private currentPlayerId: string = "";
@@ -35,7 +35,7 @@ export class MatchSavePage implements OnInit {
     public toastController: ToastController,
     private translateService: TranslateService,
     private matchService: MatchService,
-    private playerService: PlayerService,
+    public playerService: PlayerService,
     private matchStatisticsService: MatchStatisticsService,
     private loadingCtrl: LoadingController
   ) {

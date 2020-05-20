@@ -129,7 +129,7 @@
           [ngClass]="{'ionitemdisabled' : !showIfUserIsAdmin() && !checkIfPlayerIsCurrentPlayer(statistic.playerId)}"
           *ngFor="let statistic of (currentMatch?.statistics); let i = index;">
           <!--(click)="showStatistics(statistic, i)"-->
-          <ion-button color="danger" (click)="signOutConvocation(statistic, i)"
+          <ion-button color="danger" (click)="signOutConvocation(statistic)"
             *ngIf="(showIfUserIsAdmin()) || (currentMatch.active == false && checkIfPlayerIsCurrentPlayer(statistic.playerId))">
             <ion-icon name="trash"></ion-icon>
           </ion-button>
@@ -241,7 +241,7 @@
     </ion-card>
 
     <ion-card *ngSwitchCase="'lineup'">
-      <ion-button expand="block" color="success" (click)="generateLineUp()">
+      <ion-button expand="block" color="success">
         {{ 'lineup.generate' | translate }}
       </ion-button>
       TODAVIA NO FUNCIONA

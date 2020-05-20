@@ -15,7 +15,7 @@ import { MatchStatisticsService } from 'src/app/services/match-statistics.servic
 })
 export class MatchPage implements OnInit {
 
-  private title: string = 'match.title';
+  public title: string = 'match.title';
   public segment: string = 'next';
   public matchList: Observable<Match[]>;
   public matchHistoricList: Observable<Match[]>;
@@ -48,6 +48,7 @@ export class MatchPage implements OnInit {
   }
 
   async presentModal(match: Match, card: any) {
+    debugger;
     if (card != undefined) {
       this.selectedCard != undefined ? this.selectedCard.el.style.background = '' : '';
       this.selectedCard = card;

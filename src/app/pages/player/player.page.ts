@@ -13,13 +13,13 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class PlayerPage implements OnInit {
 
-  private title: string = 'players';
+  public title: string = 'players';
   private selectedCard: any;
   public playerList: Observable<Player[]>;
 
   constructor(
     public modalController: ModalController,
-    private playerService: PlayerService,
+    public playerService: PlayerService,
     private loadingCtrl: LoadingController,
     private translateService: TranslateService
   ) { }
@@ -37,6 +37,7 @@ export class PlayerPage implements OnInit {
   }
 
   async presentModal(player: Player, card: any) {
+    debugger;
     let isUserAdmin = (localStorage.getItem('isUserAdmin') == "true");
     if (isUserAdmin) {
       if (card != undefined) {

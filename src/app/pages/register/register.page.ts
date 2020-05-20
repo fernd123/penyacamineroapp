@@ -25,7 +25,7 @@ export class RegisterPage implements OnInit {
     public fAuth: AngularFireAuth,
     public formBuilder: FormBuilder,
     public translateService: TranslateService,
-    private playerService: PlayerService,
+    public playerService: PlayerService,
     private userService: UserService,
     private toastController: ToastController,
     private router: Router,

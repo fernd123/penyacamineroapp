@@ -9,19 +9,19 @@
 
       <img src="assets/images/penya_caminero_escudo.jpg" height="125" width="150" class="center"
         style="margin-top: 10px;">
-      <form [formGroup]=" userForm" (submit)="onSubmit()">
+      <form [formGroup]="userForm">
         <ion-grid>
           <ion-row color="primary" justify-content-center>
             <ion-col align-self-center size-md="12" size-lg="12" size-xs="12">
               <div padding>
                 <ion-item>
                   <ion-input name="email" type="text" formControlName="email"
-                    placeholder="{{'email' | translate }}@mail.com" (keydown.enter)="login()">
+                    placeholder="{{'email' | translate }}@mail.com" (keydown.enter)="login(userForm)">
                   </ion-input>
                 </ion-item>
                 <ion-item>
                   <ion-input name="password" type="password" formControlName="password"
-                    placeholder="{{'password' | translate }}" (keydown.enter)="login()">
+                    placeholder="{{'password' | translate }}" (keydown.enter)="login(userForm)">
                   </ion-input>
                 </ion-item>
                 <ion-row>
@@ -39,7 +39,7 @@
               </div>
 
               <div padding>
-                <ion-button expand="block" class="menuButton" [disabled]="userForm.invalid" (click)="login()">
+                <ion-button expand="block" class="menuButton" [disabled]="userForm.invalid" (click)="login(userForm)">
                   {{'login.submit' | translate}}
                 </ion-button>
               </div>

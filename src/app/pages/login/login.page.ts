@@ -24,7 +24,7 @@ export class LoginPage implements OnInit {
     public formBuilder: FormBuilder,
     private translateService: TranslateService,
     private userService: UserService,
-    private playerService: PlayerService,
+    public playerService: PlayerService,
     private loadingCtrl: LoadingController,
     private router: Router) {
   }

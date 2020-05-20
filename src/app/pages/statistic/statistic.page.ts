@@ -26,7 +26,7 @@ export class StatisticPage implements OnInit {
   public showList = [];
 
   constructor(
-    private playerService: PlayerService,
+    public playerService: PlayerService,
     private matchService: MatchService,
     private router: Router,
     private loadingCtrl: LoadingController,

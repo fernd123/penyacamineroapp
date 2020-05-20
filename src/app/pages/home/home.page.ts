@@ -14,13 +14,13 @@ import { Player } from 'src/app/models/player.model';
 export class HomePage {
 
 
-  private title: string = 'home';
+  public title: string = 'home';
 
   constructor(
     public fAuth: AngularFireAuth,
     private router: Router,
     public modalController: ModalController,
-    private playerService: PlayerService
+    public playerService: PlayerService
   ) { }
 
   logout() {

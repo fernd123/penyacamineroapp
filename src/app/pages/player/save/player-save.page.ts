@@ -20,7 +20,7 @@ export class PlayerSavePage implements OnInit {
   @Input() myProfile: boolean;
 
   public playerForm: FormGroup;
-  private title: string;
+  public title: string;
   public segment: string = 'general';
   private loading: any = null;
 
@@ -36,7 +36,7 @@ export class PlayerSavePage implements OnInit {
     private photoViewer: PhotoViewer,
     public modalController: ModalController,
     public formBuilder: FormBuilder,
-    private playerService: PlayerService,
+    public playerService: PlayerService,
     private translateService: TranslateService,
     private loadingCtrl: LoadingController,
     public toastController: ToastController,
