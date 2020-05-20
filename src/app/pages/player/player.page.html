@@ -23,7 +23,8 @@
     </ion-fab-button>
   </ion-fab>-->
 
-  <ion-card #card *ngFor="let player of (playerList | async); let i = index" (click)="presentModal(player, card)">
+  <ion-card #card *ngFor="let player of (this.playerService.getPlayers() | async); let i = index"
+    (click)="presentModal(player, card)">
     <div class="wrapper">
       <!-- *** fut-player-card ***-->
       <div class="fut-player-card" style="width: 274px;height: 460.6px;">

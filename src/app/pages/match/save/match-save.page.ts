@@ -81,13 +81,14 @@ export class MatchSavePage implements OnInit {
     let goals = null;
     let assists = null;
 
-    this.currentMatch.statistics.forEach(s => {
-      if (s.playerId == this.currentPlayerId) {
-        goals = s.goals;
-        assists = s.assists;
-        return;
-      }
-    });
+    if (this.currentMatch != undefined && this.currentMatch.statistics != undefined)
+      this.currentMatch.statistics.forEach(s => {
+        if (s.playerId == this.currentPlayerId) {
+          goals = s.goals;
+          assists = s.assists;
+          return;
+        }
+      });
     return this.formBuilder.group({
       matchId: ['', null],
       playerId: ['', null],
@@ -148,11 +149,12 @@ export class MatchSavePage implements OnInit {
   isUserSignedInConvocation() {
     let playerLoged = localStorage.getItem('playerId');
     let inConvocation = false;
-    this.currentMatch.statistics.forEach(p => {
-      if (p.playerId == playerLoged) {
-        inConvocation = true;
-      }
-    });
+    if (this.currentMatch != undefined && this.currentMatch.statistics != undefined)
+      this.currentMatch.statistics.forEach(p => {
+        if (p.playerId == playerLoged) {
+          inConvocation = true;
+        }
+      });
     return inConvocation;
   }
 

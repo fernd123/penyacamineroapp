@@ -29,7 +29,7 @@ export class PlayerPage implements OnInit {
       message: this.translateService.instant('loading')
     });
     loading.present();
-    this.playerList = this.playerService.getPlayers();
+    this.playerService.getPlayers().subscribe((res: any) => { });
     loading.dismiss();
   }
 
@@ -74,7 +74,7 @@ export class PlayerPage implements OnInit {
     if (player.profileImage != undefined) {
       return player.profileImage;
     } else {
-      return "assets/images/ob/ob" + (index + 1) + ".jpg";
+      return "assets/images/ob/ob" + (index + 1) + ".png";
     }
   }
 }

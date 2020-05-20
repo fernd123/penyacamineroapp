@@ -127,6 +127,7 @@ export class PlayerSavePage implements OnInit {
 
   private createFromForm(): Player {
     let formValue: any = this.playerForm.value;
+    formValue.id = localStorage.playerId;
     formValue.creationDate = getDate();
     let average: number = 0;
     average += formValue.pace;
